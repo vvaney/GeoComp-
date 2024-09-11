@@ -1,0 +1,1651 @@
+WARM ENSO#
+obsw <- obs[obs[,3]=="W",]#
+# Fitting#
+#modw <- fitdist(obs[,2], "weibull")#
+#modg <- fitdist(obs[,2], "gamma")#
+modlnw <- fitdist(obsw[,2], "lnorm")#
+#mode <- fitdist(obs[,2], "exp")#
+#
+#sink("/Users/davidkeellings/Desktop/Holli Precip/Output/Distribution parameters.txt")#
+#summary(modw)#
+#summary(modg)#
+#summary(modlnw)#
+#
+out <- data.frame("W", round(modlnw$estimate[1], 4), round(modlnw$estimate[2], 4), row.names=NULL)#
+colnames(out) <- c("ENSO Mode", "Location", "Scale")#
+#
+# Diagnostic Plots#
+par(bg="white")#
+#plot(modw)#
+#dev.print(file="/Users/davidkeellings/Desktop/Holli Precip/Output/Weibull Diagnostics.pdf", device=pdf)#
+#plot(modg)#
+#dev.print(file="/Users/davidkeellings/Desktop/Holli Precip/Output/Gamma Diagnostics.pdf", device=pdf)#
+plot(modlnw)#
+dev.print(file="/Users/davidkeellings/Desktop/Holli Precip/Output/Lognormal Diagnostics Warm.pdf", device=pdf)#
+#plot(mode)#
+#
+# par(mfrow=c(2,2))#
+# plot.legend <- c("Weibull", "gamma", "lognormal")#
+# denscomp(list(modw, modg, modln), legendtext = plot.legend)#
+# qqcomp(list(modw, modg, modln), legendtext = plot.legend)#
+# cdfcomp(list(modw, modg, modln), legendtext = plot.legend)#
+# ppcomp(list(modw, modg, modln), legendtext = plot.legend)#
+# dev.print(file="/Users/davidkeellings/Desktop/Holli Precip/Output/Distribution Comparison.pdf", device=pdf)#
+#
+# COLD ENSO#
+obsc <- obs[obs[,3]=="C",]#
+# Fitting#
+#modw <- fitdist(obs[,2], "weibull")#
+#modg <- fitdist(obs[,2], "gamma")#
+modlnc <- fitdist(obsc[,2], "lnorm")#
+#mode <- fitdist(obs[,2], "exp")#
+#
+#sink("/Users/davidkeellings/Desktop/Holli Precip/Output/Distribution parameters.txt")#
+#summary(modw)#
+#summary(modg)#
+#summary(modlnw)#
+#
+out <- rbind(out, c("C", round(modlnc$estimate[1],4), round(modlnc$estimate[2],4)))#
+#colnames(out) <- c("ENSO Mode", "Location", "Scale")#
+#
+# Diagnostic Plots#
+par(bg="white")#
+#plot(modw)#
+#dev.print(file="/Users/davidkeellings/Desktop/Holli Precip/Output/Weibull Diagnostics.pdf", device=pdf)#
+#plot(modg)#
+#dev.print(file="/Users/davidkeellings/Desktop/Holli Precip/Output/Gamma Diagnostics.pdf", device=pdf)#
+plot(modlnc)#
+dev.print(file="/Users/davidkeellings/Desktop/Holli Precip/Output/Lognormal Diagnostics Cold.pdf", device=pdf)#
+#plot(mode)#
+# NEUTRAL ENSO#
+obsn <- obs[obs[,3]=="N",]#
+# Fitting#
+#modw <- fitdist(obs[,2], "weibull")#
+#modg <- fitdist(obs[,2], "gamma")#
+modlnn <- fitdist(obsn[,2], "lnorm")#
+#mode <- fitdist(obs[,2], "exp")#
+#
+#sink("/Users/davidkeellings/Desktop/Holli Precip/Output/Distribution parameters.txt")#
+#summary(modw)#
+#summary(modg)#
+#summary(modlnw)#
+#
+out <- rbind(out, c("N", round(modlnn$estimate[1],4), round(modlnn$estimate[2],4)))#
+#colnames(out) <- c("ENSO Mode", "Location", "Scale")#
+#
+# Diagnostic Plots#
+par(bg="white")#
+#plot(modw)#
+#dev.print(file="/Users/davidkeellings/Desktop/Holli Precip/Output/Weibull Diagnostics.pdf", device=pdf)#
+#plot(modg)#
+#dev.print(file="/Users/davidkeellings/Desktop/Holli Precip/Output/Gamma Diagnostics.pdf", device=pdf)#
+plot(modlnn)#
+dev.print(file="/Users/davidkeellings/Desktop/Holli Precip/Output/Lognormal Diagnostics Neutral.pdf", device=pdf)#
+#plot(mode)
+out
+c("N", round(modlnn$estimate[1],4), round(modlnn$estimate[2],4))
+data.frame("N", round(modlnn$estimate[1],4), round(modlnn$estimate[2],4))
+str(c("N", round(modlnn$estimate[1],4), round(modlnn$estimate[2],4)))
+modlnn$estimate[1]
+as.numeric(modlnn$estimate[1])
+out <- rbind(out, c("N", round(as.numeric(modlnn$estimate[1]),4), round(as.numeric(modlnn$estimate[2]),4)))
+out
+out <- rbind(out, c(as.character("C"), round(modlnc$estimate[1],4), round(modlnc$estimate[2],4)))
+str(out)
+WARM ENSO#
+obsw <- obs[obs[,3]=="W",]#
+# Fitting#
+#modw <- fitdist(obs[,2], "weibull")#
+#modg <- fitdist(obs[,2], "gamma")#
+modlnw <- fitdist(obsw[,2], "lnorm")#
+#mode <- fitdist(obs[,2], "exp")#
+#
+#sink("/Users/davidkeellings/Desktop/Holli Precip/Output/Distribution parameters.txt")#
+#summary(modw)#
+#summary(modg)#
+#summary(modlnw)#
+#
+out <- data.frame(as.character("W"), round(modlnw$estimate[1], 4), round(modlnw$estimate[2], 4), row.names=NULL)#
+colnames(out) <- c("ENSO Mode", "Location", "Scale")#
+#
+# Diagnostic Plots#
+par(bg="white")#
+#plot(modw)#
+#dev.print(file="/Users/davidkeellings/Desktop/Holli Precip/Output/Weibull Diagnostics.pdf", device=pdf)#
+#plot(modg)#
+#dev.print(file="/Users/davidkeellings/Desktop/Holli Precip/Output/Gamma Diagnostics.pdf", device=pdf)#
+plot(modlnw)#
+dev.print(file="/Users/davidkeellings/Desktop/Holli Precip/Output/Lognormal Diagnostics Warm.pdf", device=pdf)#
+#plot(mode)#
+#
+# par(mfrow=c(2,2))#
+# plot.legend <- c("Weibull", "gamma", "lognormal")#
+# denscomp(list(modw, modg, modln), legendtext = plot.legend)#
+# qqcomp(list(modw, modg, modln), legendtext = plot.legend)#
+# cdfcomp(list(modw, modg, modln), legendtext = plot.legend)#
+# ppcomp(list(modw, modg, modln), legendtext = plot.legend)#
+# dev.print(file="/Users/davidkeellings/Desktop/Holli Precip/Output/Distribution Comparison.pdf", device=pdf)#
+#
+# COLD ENSO#
+obsc <- obs[obs[,3]=="C",]#
+# Fitting#
+#modw <- fitdist(obs[,2], "weibull")#
+#modg <- fitdist(obs[,2], "gamma")#
+modlnc <- fitdist(obsc[,2], "lnorm")#
+#mode <- fitdist(obs[,2], "exp")#
+#
+#sink("/Users/davidkeellings/Desktop/Holli Precip/Output/Distribution parameters.txt")#
+#summary(modw)#
+#summary(modg)#
+#summary(modlnw)#
+#
+out <- rbind(out, c("C", round(modlnc$estimate[1],4), round(modlnc$estimate[2],4)))#
+#colnames(out) <- c("ENSO Mode", "Location", "Scale")#
+#
+# Diagnostic Plots#
+par(bg="white")#
+#plot(modw)#
+#dev.print(file="/Users/davidkeellings/Desktop/Holli Precip/Output/Weibull Diagnostics.pdf", device=pdf)#
+#plot(modg)#
+#dev.print(file="/Users/davidkeellings/Desktop/Holli Precip/Output/Gamma Diagnostics.pdf", device=pdf)#
+plot(modlnc)#
+dev.print(file="/Users/davidkeellings/Desktop/Holli Precip/Output/Lognormal Diagnostics Cold.pdf", device=pdf)#
+#plot(mode)#
+# NEUTRAL ENSO#
+obsn <- obs[obs[,3]=="N",]#
+# Fitting#
+#modw <- fitdist(obs[,2], "weibull")#
+#modg <- fitdist(obs[,2], "gamma")#
+modlnn <- fitdist(obsn[,2], "lnorm")#
+#mode <- fitdist(obs[,2], "exp")#
+#
+#sink("/Users/davidkeellings/Desktop/Holli Precip/Output/Distribution parameters.txt")#
+#summary(modw)#
+#summary(modg)#
+#summary(modlnw)#
+#
+out <- rbind(out, c("N", round(as.numeric(modlnn$estimate[1]),4), round(as.numeric(modlnn$estimate[2]),4)))#
+#colnames(out) <- c("ENSO Mode", "Location", "Scale")#
+#
+# Diagnostic Plots#
+par(bg="white")#
+#plot(modw)#
+#dev.print(file="/Users/davidkeellings/Desktop/Holli Precip/Output/Weibull Diagnostics.pdf", device=pdf)#
+#plot(modg)#
+#dev.print(file="/Users/davidkeellings/Desktop/Holli Precip/Output/Gamma Diagnostics.pdf", device=pdf)#
+plot(modlnn)#
+dev.print(file="/Users/davidkeellings/Desktop/Holli Precip/Output/Lognormal Diagnostics Neutral.pdf", device=pdf)#
+#plot(mode)
+out
+str(out)
+WARM ENSO#
+obsw <- obs[obs[,3]=="W",]#
+# Fitting#
+#modw <- fitdist(obs[,2], "weibull")#
+#modg <- fitdist(obs[,2], "gamma")#
+modlnw <- fitdist(obsw[,2], "lnorm")#
+#mode <- fitdist(obs[,2], "exp")#
+#
+#sink("/Users/davidkeellings/Desktop/Holli Precip/Output/Distribution parameters.txt")#
+#summary(modw)#
+#summary(modg)#
+#summary(modlnw)#
+#
+out <- data.frame("W", round(modlnw$estimate[1], 4), round(modlnw$estimate[2], 4), row.names=NULL, stringsAsFactors=FALSE)#
+colnames(out) <- c("ENSO Mode", "Location", "Scale")#
+#
+# Diagnostic Plots#
+par(bg="white")#
+#plot(modw)#
+#dev.print(file="/Users/davidkeellings/Desktop/Holli Precip/Output/Weibull Diagnostics.pdf", device=pdf)#
+#plot(modg)#
+#dev.print(file="/Users/davidkeellings/Desktop/Holli Precip/Output/Gamma Diagnostics.pdf", device=pdf)#
+plot(modlnw)#
+dev.print(file="/Users/davidkeellings/Desktop/Holli Precip/Output/Lognormal Diagnostics Warm.pdf", device=pdf)#
+#plot(mode)#
+#
+# par(mfrow=c(2,2))#
+# plot.legend <- c("Weibull", "gamma", "lognormal")#
+# denscomp(list(modw, modg, modln), legendtext = plot.legend)#
+# qqcomp(list(modw, modg, modln), legendtext = plot.legend)#
+# cdfcomp(list(modw, modg, modln), legendtext = plot.legend)#
+# ppcomp(list(modw, modg, modln), legendtext = plot.legend)#
+# dev.print(file="/Users/davidkeellings/Desktop/Holli Precip/Output/Distribution Comparison.pdf", device=pdf)#
+#
+# COLD ENSO#
+obsc <- obs[obs[,3]=="C",]#
+# Fitting#
+#modw <- fitdist(obs[,2], "weibull")#
+#modg <- fitdist(obs[,2], "gamma")#
+modlnc <- fitdist(obsc[,2], "lnorm")#
+#mode <- fitdist(obs[,2], "exp")#
+#
+#sink("/Users/davidkeellings/Desktop/Holli Precip/Output/Distribution parameters.txt")#
+#summary(modw)#
+#summary(modg)#
+#summary(modlnw)#
+#
+out <- rbind(out, c("C", round(modlnc$estimate[1],4), round(modlnc$estimate[2],4)))#
+#colnames(out) <- c("ENSO Mode", "Location", "Scale")#
+#
+# Diagnostic Plots#
+par(bg="white")#
+#plot(modw)#
+#dev.print(file="/Users/davidkeellings/Desktop/Holli Precip/Output/Weibull Diagnostics.pdf", device=pdf)#
+#plot(modg)#
+#dev.print(file="/Users/davidkeellings/Desktop/Holli Precip/Output/Gamma Diagnostics.pdf", device=pdf)#
+plot(modlnc)#
+dev.print(file="/Users/davidkeellings/Desktop/Holli Precip/Output/Lognormal Diagnostics Cold.pdf", device=pdf)#
+#plot(mode)#
+# NEUTRAL ENSO#
+obsn <- obs[obs[,3]=="N",]#
+# Fitting#
+#modw <- fitdist(obs[,2], "weibull")#
+#modg <- fitdist(obs[,2], "gamma")#
+modlnn <- fitdist(obsn[,2], "lnorm")#
+#mode <- fitdist(obs[,2], "exp")#
+#
+#sink("/Users/davidkeellings/Desktop/Holli Precip/Output/Distribution parameters.txt")#
+#summary(modw)#
+#summary(modg)#
+#summary(modlnw)#
+#
+out <- rbind(out, c("N", round(as.numeric(modlnn$estimate[1]),4), round(as.numeric(modlnn$estimate[2]),4)))#
+#colnames(out) <- c("ENSO Mode", "Location", "Scale")#
+#
+# Diagnostic Plots#
+par(bg="white")#
+#plot(modw)#
+#dev.print(file="/Users/davidkeellings/Desktop/Holli Precip/Output/Weibull Diagnostics.pdf", device=pdf)#
+#plot(modg)#
+#dev.print(file="/Users/davidkeellings/Desktop/Holli Precip/Output/Gamma Diagnostics.pdf", device=pdf)#
+plot(modlnn)#
+dev.print(file="/Users/davidkeellings/Desktop/Holli Precip/Output/Lognormal Diagnostics Neutral.pdf", device=pdf)#
+#plot(mode)
+out
+write.csv(out, file="/Users/davidkeellings/Desktop/Holli Precip/Output/Lognormal Parameters.csv")
+write.csv(out, file="/Users/davidkeellings/Desktop/Holli Precip/Output/Lognormal Parameters.csv", row.names=FALSE)
+RP1 <- read.table(file= "/Volumes/KINGSTON/Maria Attribution/Output/PP By Station 1955_16/Sig Covar Stations/Paraiso_RPsMaria7016_66Conf.txt",  sep=",", header=T)#
+RP2 <- read.table(file= "/Volumes/KINGSTON/Maria Attribution/Output/PP By Station 1955_16/Sig Covar Stations/SantaIsabel_RPsMaria7016_66Conf.txt",  sep=",", header=T)
+par(bg="white", mar=c(2,3,2,1), mgp=c(3, .5, 0))#
+layout(matrix(c(1, 2), 2, 1, byrow=TRUE))#
+#par(mar=c(2,3,1,3), mgp=c(3, .5, 0),bg="white", mfrow=c(3,1), cex.lab=0.6, cex.axis=0.4, cex.main=0.6)#
+series1 <- ts(RP1[,2], frequency = 1, start = 1955)#
+series1a <- ts(RP1[,1], frequency = 1, start = 1955)#
+series1b <- ts(RP1[,3], frequency = 1, start = 1955)#
+series2 <- ts(RP2[,2], frequency = 1, start = 1955)#
+series2a <- ts(RP2[,1], frequency = 1, start = 1955)#
+series2b <- ts(RP2[,3], frequency = 1, start = 1955)#
+# series3 <- ts(RP3[,2], frequency = 1, start = 1970)#
+# series3a <- ts(RP3[,1], frequency = 1, start = 1970)#
+plot(series1,type="n",main="",ylab="",col="black", xlab="", xaxp  = c(1955, 2015, 12),yaxt="n", ylim=c(1,20), ann=FALSE, cex.axis=0.8)#, ylim=c(0,max(series3951/10^5, na.rm=TRUE)))#,yaxt="n", log="y")#
+    #ticks <- seq(1970, 2017, by=5)#
+    #labels <- sapply(ticks, function(i) as.expression(bquote(10^ .(i))))#
+    grid(NULL, NULL, lty=2, col="grey", lwd=0.5)#
+axis(1, cex.axis=0.8)#
+axis(2, at=c(0, 5, 10, 15, 20), cex.axis=0.75)
+lines(series1,type="l",ylab="",col="black", xlab="")#
+lines(series1a,type="l",ylab="",col="black", xlab="", lty=2)#
+lines(series1b,type="l",ylab="",col="black", xlab="", lty=2)
+plot(series1,type="n",main="",ylab="",col="black", xlab="", xaxp  = c(1955, 2015, 12),yaxt="n", ylim=c(1,20), ann=FALSE, cex.axis=0.8)#, ylim=c(0,max(series3951/10^5, na.rm=TRUE)))#,yaxt="n", log="y")
+plot(series1,type="n",main="",ylab="",col="black", xlab="", xaxp  = c(1955, 2015, 12),yaxt="n", ylim=c(1,20), ann=FALSE, cex.axis=0.8, xaxt="n")#, ylim=c(0,max(series3951/10^5, na.rm=TRUE)))#,yaxt="n", log="y")#
+    #ticks <- seq(1970, 2017, by=5)#
+    #labels <- sapply(ticks, function(i) as.expression(bquote(10^ .(i))))#
+    grid(NULL, NULL, lty=2, col="grey", lwd=0.5)#
+axis(1, cex.axis=0.8)#
+axis(2, at=c(0, 5, 10, 15, 20), cex.axis=0.75)
+lines(series1,type="l",ylab="",col="black", xlab="")#
+lines(series1a,type="l",ylab="",col="black", xlab="", lty=2)#
+lines(series1b,type="l",ylab="",col="black", xlab="", lty=2)#
+#axis(2, at=10^(2:5), labels=formatC(10^(2:5),format="f", digits=0), las=2, cex.axis=0.75)#, labels=labels)#
+#title(main="Coloso Maria Total Precip. Return Period", line=0.5, cex.main=1)#
+title(ylab="Return Period (years)", line=1.5, cex.lab=1)#
+title(xlab="Year", line=1.2, cex.lab=1)
+par(bg="white", mar=c(2,3,2,1), mgp=c(3, .5, 0))#
+layout(matrix(c(1, 2), 2, 1, byrow=TRUE))#
+#par(mar=c(2,3,1,3), mgp=c(3, .5, 0),bg="white", mfrow=c(3,1), cex.lab=0.6, cex.axis=0.4, cex.main=0.6)#
+series1 <- ts(RP1[,2], frequency = 1, start = 1955)#
+series1a <- ts(RP1[,1], frequency = 1, start = 1955)#
+series1b <- ts(RP1[,3], frequency = 1, start = 1955)#
+series2 <- ts(RP2[,2], frequency = 1, start = 1955)#
+series2a <- ts(RP2[,1], frequency = 1, start = 1955)#
+series2b <- ts(RP2[,3], frequency = 1, start = 1955)#
+# series3 <- ts(RP3[,2], frequency = 1, start = 1970)#
+# series3a <- ts(RP3[,1], frequency = 1, start = 1970)#
+plot(series1,type="n",main="",ylab="",col="black", xlab="", xaxp  = c(1955, 2015, 12),yaxt="n", ylim=c(1,20), ann=FALSE, cex.axis=0.8, xaxt="n")#, ylim=c(0,max(series3951/10^5, na.rm=TRUE)))#,yaxt="n", log="y")#
+    #ticks <- seq(1970, 2017, by=5)#
+    #labels <- sapply(ticks, function(i) as.expression(bquote(10^ .(i))))#
+    grid(NULL, NULL, lty=2, col="grey", lwd=0.5)#
+axis(1, cex.axis=0.8)#
+axis(2, at=c(0, 5, 10, 15, 20), cex.axis=0.75)#
+#x <- seq(1970,2016, by=1)#
+#polygon(c(x, rev(x)), c(RP1[,3], rev(RP1[,1])), col=rgb(1, 0, 0,0.3), border=NA)#
+lines(series1,type="l",ylab="",col="black", xlab="")#
+lines(series1a,type="l",ylab="",col="black", xlab="", lty=2)#
+lines(series1b,type="l",ylab="",col="black", xlab="", lty=2)#
+#axis(2, at=10^(2:5), labels=formatC(10^(2:5),format="f", digits=0), las=2, cex.axis=0.75)#, labels=labels)#
+#title(main="Coloso Maria Total Precip. Return Period", line=0.5, cex.main=1)#
+title(ylab="Return Period (years)", line=1.5, cex.lab=1)#
+title(xlab="Year", line=1.2, cex.lab=1)#
+plot(series2,type="n",main="",ylab="",col="black", xlab="", xaxp  = c(1955, 2015, 12),yaxt="n", ylim=c(1,30), ann=FALSE, cex.axis=0.8, xaxt="n")#, ylim=c(0,max(series3951/10^5, na.rm=TRUE)))#,yaxt="n", log="y")#
+    #ticks <- seq(1970, 2017, by=5)#
+    #labels <- sapply(ticks, function(i) as.expression(bquote(10^ .(i))))#
+    #axis(2, cex.axis=0.75)#, labels=labels)#
+grid(NULL, NULL, lty=2, col="grey", lwd=0.5)#
+axis(1, cex.axis=0.8)#
+axis(2, at=c(0, 5, 10, 15, 20, 25, 30), cex.axis=0.75)#
+lines(series2,type="l",ylab="",col="black", xlab="")#, ylim=c(0,round(max(metric385[,2:5]),-1)+10))#
+lines(series2a,type="l",ylab="",col="black", xlab="", lty=2)#
+lines(series2b,type="l",ylab="",col="black", xlab="", lty=2)#
+#title(main="Hacienda Maria Total Precip. Return Period", line=0.5, cex.main=1)#
+title(ylab="Return Period (years)", line=1.5, cex.lab=1)#
+title(xlab="Year", line=1.2, cex.lab=1)
+png("/Volumes/KINGSTON/Maria Attribution/Output/MariaRPsSigStations_66Conf.png",3000,4000,res=600)#
+#par(mar=c(1,1,1,1), mgp=c(3, .5, 0), bg="white", mfrow=c(4,3), cex.lab=0.7, cex.axis=0.7)#
+par(bg="white", mar=c(2,3,2,1), mgp=c(3, .5, 0))#
+layout(matrix(c(1, 2), 2, 1, byrow=TRUE))#
+#par(mar=c(2,3,1,3), mgp=c(3, .5, 0),bg="white", mfrow=c(3,1), cex.lab=0.6, cex.axis=0.4, cex.main=0.6)#
+series1 <- ts(RP1[,2], frequency = 1, start = 1955)#
+series1a <- ts(RP1[,1], frequency = 1, start = 1955)#
+series1b <- ts(RP1[,3], frequency = 1, start = 1955)#
+series2 <- ts(RP2[,2], frequency = 1, start = 1955)#
+series2a <- ts(RP2[,1], frequency = 1, start = 1955)#
+series2b <- ts(RP2[,3], frequency = 1, start = 1955)#
+# series3 <- ts(RP3[,2], frequency = 1, start = 1970)#
+# series3a <- ts(RP3[,1], frequency = 1, start = 1970)#
+plot(series1,type="n",main="",ylab="",col="black", xlab="", xaxp  = c(1955, 2015, 12),yaxt="n", ylim=c(1,20), ann=FALSE, cex.axis=0.8, xaxt="n")#, ylim=c(0,max(series3951/10^5, na.rm=TRUE)))#,yaxt="n", log="y")#
+    #ticks <- seq(1970, 2017, by=5)#
+    #labels <- sapply(ticks, function(i) as.expression(bquote(10^ .(i))))#
+    grid(NULL, NULL, lty=2, col="grey", lwd=0.5)#
+axis(1, cex.axis=0.8)#
+axis(2, at=c(0, 5, 10, 15, 20), cex.axis=0.75)#
+#x <- seq(1970,2016, by=1)#
+#polygon(c(x, rev(x)), c(RP1[,3], rev(RP1[,1])), col=rgb(1, 0, 0,0.3), border=NA)#
+lines(series1,type="l",ylab="",col="black", xlab="")#
+lines(series1a,type="l",ylab="",col="black", xlab="", lty=2)#
+lines(series1b,type="l",ylab="",col="black", xlab="", lty=2)#
+#axis(2, at=10^(2:5), labels=formatC(10^(2:5),format="f", digits=0), las=2, cex.axis=0.75)#, labels=labels)#
+#title(main="Coloso Maria Total Precip. Return Period", line=0.5, cex.main=1)#
+title(ylab="Return Period (years)", line=1.5, cex.lab=1)#
+title(xlab="Year", line=1.2, cex.lab=1)#
+plot(series2,type="n",main="",ylab="",col="black", xlab="", xaxp  = c(1955, 2015, 12),yaxt="n", ylim=c(1,30), ann=FALSE, cex.axis=0.8, xaxt="n")#, ylim=c(0,max(series3951/10^5, na.rm=TRUE)))#,yaxt="n", log="y")#
+    #ticks <- seq(1970, 2017, by=5)#
+    #labels <- sapply(ticks, function(i) as.expression(bquote(10^ .(i))))#
+    #axis(2, cex.axis=0.75)#, labels=labels)#
+grid(NULL, NULL, lty=2, col="grey", lwd=0.5)#
+axis(1, cex.axis=0.8)#
+axis(2, at=c(0, 5, 10, 15, 20, 25, 30), cex.axis=0.75)#
+lines(series2,type="l",ylab="",col="black", xlab="")#, ylim=c(0,round(max(metric385[,2:5]),-1)+10))#
+lines(series2a,type="l",ylab="",col="black", xlab="", lty=2)#
+lines(series2b,type="l",ylab="",col="black", xlab="", lty=2)#
+#title(main="Hacienda Maria Total Precip. Return Period", line=0.5, cex.main=1)#
+title(ylab="Return Period (years)", line=1.5, cex.lab=1)#
+title(xlab="Year", line=1.2, cex.lab=1)#
+# plot(series3,type="n",main="",ylab="",col="black", xlab="", xaxp  = c(1970, 2015, 5),yaxt="n", ylim=c(1,50), ann=FALSE)#, ylim=c(0,max(series3951/10^5, na.rm=TRUE)))#,yaxt="n", log="y")#
+#   #ticks <- seq(1970, 2017, by=5)#
+#   #labels <- sapply(ticks, function(i) as.expression(bquote(10^ .(i))))#
+#   #axis(2, cex.axis=0.75)#, labels=labels)#
+# grid(NULL, NULL, lty=2, col="grey", lwd=0.5)#
+# axis(2, at=c(1, 10, 20, 30, 40, 50), cex.axis=0.75)#
+# lines(series3,type="l",ylab="",col="black", xlab="")#, ylim=c(0,round(max(metric385[,2:5]),-1)+10))#
+# lines(series3a,type="l",ylab="",col="black", xlab="", lty=2)#
+# title(main="Juncos Maria Total Precip. Return Period", line=0.5, cex.main=1)#
+# title(ylab="Return Period (years)", line=1.5, cex.lab=1)#
+dev.off()
+RL1 <- read.table(file= "/Volumes/KINGSTON/Maria Attribution/Output/PP By Station 1955_16/Sig Covar Stations/Paraiso_RelRisk.txt",  sep=",", header=T)
+RL2 <- read.table(file= "/Volumes/KINGSTON/Maria Attribution/Output/PP By Station 1955_16/Sig Covar Stations/SantaIsabel_RelRisk.txt",  sep=",", header=T)
+preciprange <- seq(100, 1000, by=25)
+par(bg="white", mar=c(2,3,2,1), mgp=c(3, .5, 0))#
+layout(matrix(c(1, 2), 2, 1, byrow=TRUE))#
+#par(mar=c(2,3,1,3), mgp=c(3, .5, 0),bg="white", mfrow=c(3,1), cex.lab=0.6, cex.axis=0.4, cex.main=0.6)#
+series1 <- cbind(seq(100, 1000, by=25),RL1[,3])#
+series1a <- cbind(seq(100, 1000, by=25),RL1[,4])#
+series2 <- cbind(seq(100, 1000, by=25),RL2[,3])#
+series2a <- cbind(seq(100, 1000, by=25),RL2[,4])#
+#series3 <- cbind(seq(100, 1000, by=25),RL3[,3])#
+#series3a <- cbind(seq(100, 1000, by=25),RL3[,4])#
+plot(series1,type="n",main="",ylab="",col="black", xlab="", xaxt="n", yaxt="n", xlim=c(100, 1000), ylim=c(0,3), ann=FALSE)#, ylim=c(0,max(series3951/10^5, na.rm=TRUE)))#,yaxt="n", log="y")#
+    #ticks <- seq(1970, 2017, by=5)#
+    #labels <- sapply(ticks, function(i) as.expression(bquote(10^ .(i))))#
+axis(2, at=c(0, 1, 2, 3), cex.axis=0.75)#
+axis(1, at=c(100, 200, 300, 400, 500, 600, 700, 800, 900, 1000), cex.axis=0.75)#
+grid(NULL, NULL, lty=2, col="grey", lwd=0.5)#
+#x <- seq(1970,2016, by=1)#
+#polygon(c(x, rev(x)), c(RP1[,3], rev(RP1[,1])), col=rgb(1, 0, 0,0.3), border=NA)#
+lines(series1[,1], series1[,2], type="l",ylab="",col="black", xlab="")#
+lines(series1a[,1], series1a[,2], type="l",ylab="",col="black", xlab="", lty=2)#
+#axis(2, at=10^(2:5), labels=formatC(10^(2:5),format="f", digits=0), las=2, cex.axis=0.75)#, labels=labels)#
+#title(main="Coloso Risk Ratio", line=0.5, cex.main=1)#
+title(ylab="Risk Ratio", line=1.5, cex.lab=1)#
+title(xlab="Peak Storm Precipitation (mm)", line=1.5, cex.lab=1)
+par(bg="white", mar=c(2,3,2,1), mgp=c(3, .5, 0))#
+layout(matrix(c(1, 2), 2, 1, byrow=TRUE))#
+#par(mar=c(2,3,1,3), mgp=c(3, .5, 0),bg="white", mfrow=c(3,1), cex.lab=0.6, cex.axis=0.4, cex.main=0.6)#
+series1 <- cbind(seq(100, 1000, by=25),RL1[,3])#
+series1a <- cbind(seq(100, 1000, by=25),RL1[,4])#
+series2 <- cbind(seq(100, 1000, by=25),RL2[,3])#
+series2a <- cbind(seq(100, 1000, by=25),RL2[,4])#
+#series3 <- cbind(seq(100, 1000, by=25),RL3[,3])#
+#series3a <- cbind(seq(100, 1000, by=25),RL3[,4])#
+plot(series1,type="n",main="",ylab="",col="black", xlab="", xaxt="n", yaxt="n", xlim=c(100, 1000), ylim=c(0,3), ann=FALSE)#, ylim=c(0,max(series3951/10^5, na.rm=TRUE)))#,yaxt="n", log="y")#
+    #ticks <- seq(1970, 2017, by=5)#
+    #labels <- sapply(ticks, function(i) as.expression(bquote(10^ .(i))))#
+axis(2, at=c(0, 1, 2, 3), cex.axis=0.75)#
+axis(1, at=c(100, 200, 300, 400, 500, 600, 700, 800, 900, 1000), cex.axis=0.75)#
+grid(NULL, NULL, lty=2, col="grey", lwd=0.5)#
+#x <- seq(1970,2016, by=1)#
+#polygon(c(x, rev(x)), c(RP1[,3], rev(RP1[,1])), col=rgb(1, 0, 0,0.3), border=NA)#
+lines(series1[,1], series1[,2], type="l",ylab="",col="black", xlab="")#
+lines(series1a[,1], series1a[,2], type="l",ylab="",col="black", xlab="", lty=2)#
+#axis(2, at=10^(2:5), labels=formatC(10^(2:5),format="f", digits=0), las=2, cex.axis=0.75)#, labels=labels)#
+#title(main="Coloso Risk Ratio", line=0.5, cex.main=1)#
+title(ylab="Risk Ratio", line=1.5, cex.lab=1)#
+title(xlab="Peak Storm Precipitation (mm)", line=1.2, cex.lab=1)
+par(bg="white", mar=c(1,3,2,1), mgp=c(3, .5, 0))#
+layout(matrix(c(1, 2), 2, 1, byrow=TRUE))#
+#par(mar=c(2,3,1,3), mgp=c(3, .5, 0),bg="white", mfrow=c(3,1), cex.lab=0.6, cex.axis=0.4, cex.main=0.6)#
+series1 <- cbind(seq(100, 1000, by=25),RL1[,3])#
+series1a <- cbind(seq(100, 1000, by=25),RL1[,4])#
+series2 <- cbind(seq(100, 1000, by=25),RL2[,3])#
+series2a <- cbind(seq(100, 1000, by=25),RL2[,4])#
+#series3 <- cbind(seq(100, 1000, by=25),RL3[,3])#
+#series3a <- cbind(seq(100, 1000, by=25),RL3[,4])#
+plot(series1,type="n",main="",ylab="",col="black", xlab="", xaxt="n", yaxt="n", xlim=c(100, 1000), ylim=c(0,3), ann=FALSE)#, ylim=c(0,max(series3951/10^5, na.rm=TRUE)))#,yaxt="n", log="y")#
+    #ticks <- seq(1970, 2017, by=5)#
+    #labels <- sapply(ticks, function(i) as.expression(bquote(10^ .(i))))#
+axis(2, at=c(0, 1, 2, 3), cex.axis=0.75)#
+axis(1, at=c(100, 200, 300, 400, 500, 600, 700, 800, 900, 1000), cex.axis=0.75)#
+grid(NULL, NULL, lty=2, col="grey", lwd=0.5)#
+#x <- seq(1970,2016, by=1)#
+#polygon(c(x, rev(x)), c(RP1[,3], rev(RP1[,1])), col=rgb(1, 0, 0,0.3), border=NA)#
+lines(series1[,1], series1[,2], type="l",ylab="",col="black", xlab="")#
+lines(series1a[,1], series1a[,2], type="l",ylab="",col="black", xlab="", lty=2)#
+#axis(2, at=10^(2:5), labels=formatC(10^(2:5),format="f", digits=0), las=2, cex.axis=0.75)#, labels=labels)#
+#title(main="Coloso Risk Ratio", line=0.5, cex.main=1)#
+title(ylab="Risk Ratio", line=1.5, cex.lab=1)#
+title(xlab="Peak Storm Precipitation (mm)", line=1.2, cex.lab=1)
+par(bg="white", mar=c(3,3,2,1), mgp=c(3, .5, 0))#
+layout(matrix(c(1, 2), 2, 1, byrow=TRUE))#
+#par(mar=c(2,3,1,3), mgp=c(3, .5, 0),bg="white", mfrow=c(3,1), cex.lab=0.6, cex.axis=0.4, cex.main=0.6)#
+series1 <- cbind(seq(100, 1000, by=25),RL1[,3])#
+series1a <- cbind(seq(100, 1000, by=25),RL1[,4])#
+series2 <- cbind(seq(100, 1000, by=25),RL2[,3])#
+series2a <- cbind(seq(100, 1000, by=25),RL2[,4])#
+#series3 <- cbind(seq(100, 1000, by=25),RL3[,3])#
+#series3a <- cbind(seq(100, 1000, by=25),RL3[,4])#
+plot(series1,type="n",main="",ylab="",col="black", xlab="", xaxt="n", yaxt="n", xlim=c(100, 1000), ylim=c(0,3), ann=FALSE)#, ylim=c(0,max(series3951/10^5, na.rm=TRUE)))#,yaxt="n", log="y")#
+    #ticks <- seq(1970, 2017, by=5)#
+    #labels <- sapply(ticks, function(i) as.expression(bquote(10^ .(i))))#
+axis(2, at=c(0, 1, 2, 3), cex.axis=0.75)#
+axis(1, at=c(100, 200, 300, 400, 500, 600, 700, 800, 900, 1000), cex.axis=0.75)#
+grid(NULL, NULL, lty=2, col="grey", lwd=0.5)#
+#x <- seq(1970,2016, by=1)#
+#polygon(c(x, rev(x)), c(RP1[,3], rev(RP1[,1])), col=rgb(1, 0, 0,0.3), border=NA)#
+lines(series1[,1], series1[,2], type="l",ylab="",col="black", xlab="")#
+lines(series1a[,1], series1a[,2], type="l",ylab="",col="black", xlab="", lty=2)#
+#axis(2, at=10^(2:5), labels=formatC(10^(2:5),format="f", digits=0), las=2, cex.axis=0.75)#, labels=labels)#
+#title(main="Coloso Risk Ratio", line=0.5, cex.main=1)#
+title(ylab="Risk Ratio", line=1.5, cex.lab=1)#
+title(xlab="Peak Storm Precipitation (mm)", line=1.2, cex.lab=1)
+par(bg="white", mar=c(3,3,2,1), mgp=c(3, .5, 0))#
+layout(matrix(c(1, 2), 2, 1, byrow=TRUE))#
+#par(mar=c(2,3,1,3), mgp=c(3, .5, 0),bg="white", mfrow=c(3,1), cex.lab=0.6, cex.axis=0.4, cex.main=0.6)#
+series1 <- cbind(seq(100, 1000, by=25),RL1[,3])#
+series1a <- cbind(seq(100, 1000, by=25),RL1[,4])#
+series2 <- cbind(seq(100, 1000, by=25),RL2[,3])#
+series2a <- cbind(seq(100, 1000, by=25),RL2[,4])#
+#series3 <- cbind(seq(100, 1000, by=25),RL3[,3])#
+#series3a <- cbind(seq(100, 1000, by=25),RL3[,4])#
+plot(series1,type="n",main="",ylab="",col="black", xlab="", xaxt="n", yaxt="n", xlim=c(100, 1000), ylim=c(0,3), ann=FALSE)#, ylim=c(0,max(series3951/10^5, na.rm=TRUE)))#,yaxt="n", log="y")#
+    #ticks <- seq(1970, 2017, by=5)#
+    #labels <- sapply(ticks, function(i) as.expression(bquote(10^ .(i))))#
+axis(2, at=c(0, 1, 2, 3), cex.axis=0.75)#
+axis(1, at=c(100, 200, 300, 400, 500, 600, 700, 800, 900, 1000), cex.axis=0.75)#
+grid(NULL, NULL, lty=2, col="grey", lwd=0.5)#
+#x <- seq(1970,2016, by=1)#
+#polygon(c(x, rev(x)), c(RP1[,3], rev(RP1[,1])), col=rgb(1, 0, 0,0.3), border=NA)#
+lines(series1[,1], series1[,2], type="l",ylab="",col="black", xlab="")#
+lines(series1a[,1], series1a[,2], type="l",ylab="",col="black", xlab="", lty=2)#
+#axis(2, at=10^(2:5), labels=formatC(10^(2:5),format="f", digits=0), las=2, cex.axis=0.75)#, labels=labels)#
+#title(main="Coloso Risk Ratio", line=0.5, cex.main=1)#
+title(ylab="Risk Ratio", line=1.5, cex.lab=1)#
+title(xlab="Peak Storm Precipitation (mm)", line=1.3, cex.lab=1)
+plot(series2,type="n",main="",ylab="",col="black", xlab="", xaxt="n", yaxt="n", xlim=c(100, 1000), ylim=c(0,3), ann=FALSE)#, ylim=c(0,max(series3951/10^5, na.rm=TRUE)))#,yaxt="n", log="y")#
+    #ticks <- seq(1970, 2017, by=5)#
+    #labels <- sapply(ticks, function(i) as.expression(bquote(10^ .(i))))#
+axis(2, at=c(0, 1, 2, 3), cex.axis=0.75)#
+axis(1, at=c(100, 200, 300, 400, 500, 600, 700, 800, 900, 1000), cex.axis=0.75)#
+grid(NULL, NULL, lty=2, col="grey", lwd=0.5)#
+#x <- seq(1970,2016, by=1)#
+#polygon(c(x, rev(x)), c(RP1[,3], rev(RP1[,1])), col=rgb(1, 0, 0,0.3), border=NA)#
+lines(series2[,1], series2[,2], type="l",ylab="",col="black", xlab="")#
+lines(series2a[,1], series2a[,2], type="l",ylab="",col="black", xlab="", lty=2)#
+#axis(2, at=10^(2:5), labels=formatC(10^(2:5),format="f", digits=0), las=2, cex.axis=0.75)#, labels=labels)#
+#title(main="Hacienda Risk Ratio", line=0.5, cex.main=1)#
+title(ylab="Risk Ratio", line=1.5, cex.lab=1)#
+title(xlab="Peak Storm Precipitation (mm)", line=1.3, cex.lab=1)
+par(bg="white", mar=c(3,3,2,1), mgp=c(3, .5, 0))#
+layout(matrix(c(1, 2), 2, 1, byrow=TRUE))#
+#par(mar=c(2,3,1,3), mgp=c(3, .5, 0),bg="white", mfrow=c(3,1), cex.lab=0.6, cex.axis=0.4, cex.main=0.6)#
+series1 <- cbind(seq(100, 1000, by=25),RL1[,3])#
+series1a <- cbind(seq(100, 1000, by=25),RL1[,4])#
+series2 <- cbind(seq(100, 1000, by=25),RL2[,3])#
+series2a <- cbind(seq(100, 1000, by=25),RL2[,4])#
+#series3 <- cbind(seq(100, 1000, by=25),RL3[,3])#
+#series3a <- cbind(seq(100, 1000, by=25),RL3[,4])#
+plot(series1,type="n",main="",ylab="",col="black", xlab="", xaxt="n", yaxt="n", xlim=c(100, 1000), ylim=c(0,3), ann=FALSE)#, ylim=c(0,max(series3951/10^5, na.rm=TRUE)))#,yaxt="n", log="y")#
+    #ticks <- seq(1970, 2017, by=5)#
+    #labels <- sapply(ticks, function(i) as.expression(bquote(10^ .(i))))#
+axis(2, at=c(0, 1, 2, 3), cex.axis=0.75)#
+axis(1, at=c(100, 200, 300, 400, 500, 600, 700, 800, 900, 1000), cex.axis=0.75)#
+grid(NULL, NULL, lty=2, col="grey", lwd=0.5)#
+#x <- seq(1970,2016, by=1)#
+#polygon(c(x, rev(x)), c(RP1[,3], rev(RP1[,1])), col=rgb(1, 0, 0,0.3), border=NA)#
+lines(series1[,1], series1[,2], type="l",ylab="",col="black", xlab="")#
+lines(series1a[,1], series1a[,2], type="l",ylab="",col="black", xlab="", lty=2)#
+#axis(2, at=10^(2:5), labels=formatC(10^(2:5),format="f", digits=0), las=2, cex.axis=0.75)#, labels=labels)#
+#title(main="Coloso Risk Ratio", line=0.5, cex.main=1)#
+title(ylab="Risk Ratio", line=1.5, cex.lab=1)#
+title(xlab="Peak Storm Precipitation (mm)", line=1.3, cex.lab=1)#
+plot(series2,type="n",main="",ylab="",col="black", xlab="", xaxt="n", yaxt="n", xlim=c(100, 1000), ylim=c(0,9), ann=FALSE)#, ylim=c(0,max(series3951/10^5, na.rm=TRUE)))#,yaxt="n", log="y")#
+    #ticks <- seq(1970, 2017, by=5)#
+    #labels <- sapply(ticks, function(i) as.expression(bquote(10^ .(i))))#
+axis(2, at=c(0, 1, 2, 3), cex.axis=0.75)#
+axis(1, at=c(100, 200, 300, 400, 500, 600, 700, 800, 900, 1000), cex.axis=0.75)#
+grid(NULL, NULL, lty=2, col="grey", lwd=0.5)#
+#x <- seq(1970,2016, by=1)#
+#polygon(c(x, rev(x)), c(RP1[,3], rev(RP1[,1])), col=rgb(1, 0, 0,0.3), border=NA)#
+lines(series2[,1], series2[,2], type="l",ylab="",col="black", xlab="")#
+lines(series2a[,1], series2a[,2], type="l",ylab="",col="black", xlab="", lty=2)#
+#axis(2, at=10^(2:5), labels=formatC(10^(2:5),format="f", digits=0), las=2, cex.axis=0.75)#, labels=labels)#
+#title(main="Hacienda Risk Ratio", line=0.5, cex.main=1)#
+title(ylab="Risk Ratio", line=1.5, cex.lab=1)#
+title(xlab="Peak Storm Precipitation (mm)", line=1.3, cex.lab=1)
+par(bg="white", mar=c(3,3,2,1), mgp=c(3, .5, 0))#
+layout(matrix(c(1, 2), 2, 1, byrow=TRUE))#
+#par(mar=c(2,3,1,3), mgp=c(3, .5, 0),bg="white", mfrow=c(3,1), cex.lab=0.6, cex.axis=0.4, cex.main=0.6)#
+series1 <- cbind(seq(100, 1000, by=25),RL1[,3])#
+series1a <- cbind(seq(100, 1000, by=25),RL1[,4])#
+series2 <- cbind(seq(100, 1000, by=25),RL2[,3])#
+series2a <- cbind(seq(100, 1000, by=25),RL2[,4])#
+#series3 <- cbind(seq(100, 1000, by=25),RL3[,3])#
+#series3a <- cbind(seq(100, 1000, by=25),RL3[,4])#
+plot(series1,type="n",main="",ylab="",col="black", xlab="", xaxt="n", yaxt="n", xlim=c(100, 1000), ylim=c(0,3), ann=FALSE)#, ylim=c(0,max(series3951/10^5, na.rm=TRUE)))#,yaxt="n", log="y")#
+    #ticks <- seq(1970, 2017, by=5)#
+    #labels <- sapply(ticks, function(i) as.expression(bquote(10^ .(i))))#
+axis(2, at=c(0, 1, 2, 3), cex.axis=0.75)#
+axis(1, at=c(100, 200, 300, 400, 500, 600, 700, 800, 900, 1000), cex.axis=0.75)#
+grid(NULL, NULL, lty=2, col="grey", lwd=0.5)#
+#x <- seq(1970,2016, by=1)#
+#polygon(c(x, rev(x)), c(RP1[,3], rev(RP1[,1])), col=rgb(1, 0, 0,0.3), border=NA)#
+lines(series1[,1], series1[,2], type="l",ylab="",col="black", xlab="")#
+lines(series1a[,1], series1a[,2], type="l",ylab="",col="black", xlab="", lty=2)#
+#axis(2, at=10^(2:5), labels=formatC(10^(2:5),format="f", digits=0), las=2, cex.axis=0.75)#, labels=labels)#
+#title(main="Coloso Risk Ratio", line=0.5, cex.main=1)#
+title(ylab="Risk Ratio", line=1.5, cex.lab=1)#
+title(xlab="Peak Storm Precipitation (mm)", line=1.3, cex.lab=1)#
+plot(series2,type="n",main="",ylab="",col="black", xlab="", xaxt="n", yaxt="n", xlim=c(100, 1000), ylim=c(0,9), ann=FALSE)#, ylim=c(0,max(series3951/10^5, na.rm=TRUE)))#,yaxt="n", log="y")#
+    #ticks <- seq(1970, 2017, by=5)#
+    #labels <- sapply(ticks, function(i) as.expression(bquote(10^ .(i))))#
+axis(2, at=c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9), cex.axis=0.75)#
+axis(1, at=c(100, 200, 300, 400, 500, 600, 700, 800, 900, 1000), cex.axis=0.75)#
+grid(NULL, NULL, lty=2, col="grey", lwd=0.5)#
+#x <- seq(1970,2016, by=1)#
+#polygon(c(x, rev(x)), c(RP1[,3], rev(RP1[,1])), col=rgb(1, 0, 0,0.3), border=NA)#
+lines(series2[,1], series2[,2], type="l",ylab="",col="black", xlab="")#
+lines(series2a[,1], series2a[,2], type="l",ylab="",col="black", xlab="", lty=2)#
+#axis(2, at=10^(2:5), labels=formatC(10^(2:5),format="f", digits=0), las=2, cex.axis=0.75)#, labels=labels)#
+#title(main="Hacienda Risk Ratio", line=0.5, cex.main=1)#
+title(ylab="Risk Ratio", line=1.5, cex.lab=1)#
+title(xlab="Peak Storm Precipitation (mm)", line=1.3, cex.lab=1)
+?grid
+par(bg="white", mar=c(3,3,2,1), mgp=c(3, .5, 0))#
+layout(matrix(c(1, 2), 2, 1, byrow=TRUE))#
+#par(mar=c(2,3,1,3), mgp=c(3, .5, 0),bg="white", mfrow=c(3,1), cex.lab=0.6, cex.axis=0.4, cex.main=0.6)#
+series1 <- cbind(seq(100, 1000, by=25),RL1[,3])#
+series1a <- cbind(seq(100, 1000, by=25),RL1[,4])#
+series2 <- cbind(seq(100, 1000, by=25),RL2[,3])#
+series2a <- cbind(seq(100, 1000, by=25),RL2[,4])#
+#series3 <- cbind(seq(100, 1000, by=25),RL3[,3])#
+#series3a <- cbind(seq(100, 1000, by=25),RL3[,4])#
+plot(series1,type="n",main="",ylab="",col="black", xlab="", xaxt="n", yaxt="n", xlim=c(100, 1000), ylim=c(0,3), ann=FALSE)#, ylim=c(0,max(series3951/10^5, na.rm=TRUE)))#,yaxt="n", log="y")#
+    #ticks <- seq(1970, 2017, by=5)#
+    #labels <- sapply(ticks, function(i) as.expression(bquote(10^ .(i))))#
+axis(2, at=c(0, 1, 2, 3), cex.axis=0.75)#
+axis(1, at=c(100, 200, 300, 400, 500, 600, 700, 800, 900, 1000), cex.axis=0.75)#
+grid(NULL, NULL, lty=2, col="grey", lwd=0.5)#
+#x <- seq(1970,2016, by=1)#
+#polygon(c(x, rev(x)), c(RP1[,3], rev(RP1[,1])), col=rgb(1, 0, 0,0.3), border=NA)#
+lines(series1[,1], series1[,2], type="l",ylab="",col="black", xlab="")#
+lines(series1a[,1], series1a[,2], type="l",ylab="",col="black", xlab="", lty=2)#
+#axis(2, at=10^(2:5), labels=formatC(10^(2:5),format="f", digits=0), las=2, cex.axis=0.75)#, labels=labels)#
+#title(main="Coloso Risk Ratio", line=0.5, cex.main=1)#
+title(ylab="Risk Ratio", line=1.5, cex.lab=1)#
+title(xlab="Peak Storm Precipitation (mm)", line=1.3, cex.lab=1)#
+plot(series2,type="n",main="",ylab="",col="black", xlab="", xaxt="n", yaxt="n", xlim=c(100, 1000), ylim=c(0,9), ann=FALSE)#, ylim=c(0,max(series3951/10^5, na.rm=TRUE)))#,yaxt="n", log="y")#
+    #ticks <- seq(1970, 2017, by=5)#
+    #labels <- sapply(ticks, function(i) as.expression(bquote(10^ .(i))))#
+axis(2, at=c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9), cex.axis=0.75)#
+axis(1, at=c(100, 200, 300, 400, 500, 600, 700, 800, 900, 1000), cex.axis=0.75)#
+grid(NULL, NULL, lty=2, col="grey", lwd=0.5)#
+#x <- seq(1970,2016, by=1)#
+#polygon(c(x, rev(x)), c(RP1[,3], rev(RP1[,1])), col=rgb(1, 0, 0,0.3), border=NA)#
+lines(series2[,1], series2[,2], type="l",ylab="",col="black", xlab="")#
+lines(series2a[,1], series2a[,2], type="l",ylab="",col="black", xlab="", lty=2)#
+#axis(2, at=10^(2:5), labels=formatC(10^(2:5),format="f", digits=0), las=2, cex.axis=0.75)#, labels=labels)#
+#title(main="Hacienda Risk Ratio", line=0.5, cex.main=1)#
+title(ylab="Risk Ratio", line=1.5, cex.lab=1)#
+title(xlab="Peak Storm Precipitation (mm)", line=1.3, cex.lab=1)
+?abline
+par(bg="white", mar=c(3,3,2,1), mgp=c(3, .5, 0))#
+layout(matrix(c(1, 2), 2, 1, byrow=TRUE))#
+#par(mar=c(2,3,1,3), mgp=c(3, .5, 0),bg="white", mfrow=c(3,1), cex.lab=0.6, cex.axis=0.4, cex.main=0.6)#
+series1 <- cbind(seq(100, 1000, by=25),RL1[,3])#
+series1a <- cbind(seq(100, 1000, by=25),RL1[,4])#
+series2 <- cbind(seq(100, 1000, by=25),RL2[,3])#
+series2a <- cbind(seq(100, 1000, by=25),RL2[,4])#
+#series3 <- cbind(seq(100, 1000, by=25),RL3[,3])#
+#series3a <- cbind(seq(100, 1000, by=25),RL3[,4])#
+plot(series1,type="n",main="",ylab="",col="black", xlab="", xaxt="n", yaxt="n", xlim=c(100, 1000), ylim=c(0,3), ann=FALSE)#, ylim=c(0,max(series3951/10^5, na.rm=TRUE)))#,yaxt="n", log="y")#
+    #ticks <- seq(1970, 2017, by=5)#
+    #labels <- sapply(ticks, function(i) as.expression(bquote(10^ .(i))))#
+axis(2, at=c(0, 1, 2, 3), cex.axis=0.75)#
+axis(1, at=c(100, 200, 300, 400, 500, 600, 700, 800, 900, 1000), cex.axis=0.75)#
+grid(NULL, NULL, lty=2, col="grey", lwd=0.5)#
+#x <- seq(1970,2016, by=1)#
+#polygon(c(x, rev(x)), c(RP1[,3], rev(RP1[,1])), col=rgb(1, 0, 0,0.3), border=NA)#
+lines(series1[,1], series1[,2], type="l",ylab="",col="black", xlab="")#
+lines(series1a[,1], series1a[,2], type="l",ylab="",col="black", xlab="", lty=2)#
+#axis(2, at=10^(2:5), labels=formatC(10^(2:5),format="f", digits=0), las=2, cex.axis=0.75)#, labels=labels)#
+#title(main="Coloso Risk Ratio", line=0.5, cex.main=1)#
+title(ylab="Risk Ratio", line=1.5, cex.lab=1)#
+title(xlab="Peak Storm Precipitation (mm)", line=1.3, cex.lab=1)#
+abline(1,0)#
+plot(series2,type="n",main="",ylab="",col="black", xlab="", xaxt="n", yaxt="n", xlim=c(100, 1000), ylim=c(0,9), ann=FALSE)#, ylim=c(0,max(series3951/10^5, na.rm=TRUE)))#,yaxt="n", log="y")#
+    #ticks <- seq(1970, 2017, by=5)#
+    #labels <- sapply(ticks, function(i) as.expression(bquote(10^ .(i))))#
+axis(2, at=c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9), cex.axis=0.75)#
+axis(1, at=c(100, 200, 300, 400, 500, 600, 700, 800, 900, 1000), cex.axis=0.75)#
+grid(NULL, NULL, lty=2, col="grey", lwd=0.5)#
+#x <- seq(1970,2016, by=1)#
+#polygon(c(x, rev(x)), c(RP1[,3], rev(RP1[,1])), col=rgb(1, 0, 0,0.3), border=NA)#
+lines(series2[,1], series2[,2], type="l",ylab="",col="black", xlab="")#
+lines(series2a[,1], series2a[,2], type="l",ylab="",col="black", xlab="", lty=2)#
+#axis(2, at=10^(2:5), labels=formatC(10^(2:5),format="f", digits=0), las=2, cex.axis=0.75)#, labels=labels)#
+#title(main="Hacienda Risk Ratio", line=0.5, cex.main=1)#
+title(ylab="Risk Ratio", line=1.5, cex.lab=1)#
+title(xlab="Peak Storm Precipitation (mm)", line=1.3, cex.lab=1)
+par(bg="white", mar=c(3,3,2,1), mgp=c(3, .5, 0))#
+layout(matrix(c(1, 2), 2, 1, byrow=TRUE))#
+#par(mar=c(2,3,1,3), mgp=c(3, .5, 0),bg="white", mfrow=c(3,1), cex.lab=0.6, cex.axis=0.4, cex.main=0.6)#
+series1 <- cbind(seq(100, 1000, by=25),RL1[,3])#
+series1a <- cbind(seq(100, 1000, by=25),RL1[,4])#
+series2 <- cbind(seq(100, 1000, by=25),RL2[,3])#
+series2a <- cbind(seq(100, 1000, by=25),RL2[,4])#
+#series3 <- cbind(seq(100, 1000, by=25),RL3[,3])#
+#series3a <- cbind(seq(100, 1000, by=25),RL3[,4])#
+plot(series1,type="n",main="",ylab="",col="black", xlab="", xaxt="n", yaxt="n", xlim=c(100, 1000), ylim=c(0,3), ann=FALSE)#, ylim=c(0,max(series3951/10^5, na.rm=TRUE)))#,yaxt="n", log="y")#
+    #ticks <- seq(1970, 2017, by=5)#
+    #labels <- sapply(ticks, function(i) as.expression(bquote(10^ .(i))))#
+axis(2, at=c(0, 1, 2, 3), cex.axis=0.75)#
+axis(1, at=c(100, 200, 300, 400, 500, 600, 700, 800, 900, 1000), cex.axis=0.75)#
+grid(NULL, NULL, lty=2, col="grey", lwd=0.5)#
+#x <- seq(1970,2016, by=1)#
+#polygon(c(x, rev(x)), c(RP1[,3], rev(RP1[,1])), col=rgb(1, 0, 0,0.3), border=NA)#
+lines(series1[,1], series1[,2], type="l",ylab="",col="black", xlab="")#
+lines(series1a[,1], series1a[,2], type="l",ylab="",col="black", xlab="", lty=2)#
+#axis(2, at=10^(2:5), labels=formatC(10^(2:5),format="f", digits=0), las=2, cex.axis=0.75)#, labels=labels)#
+#title(main="Coloso Risk Ratio", line=0.5, cex.main=1)#
+title(ylab="Risk Ratio", line=1.5, cex.lab=1)#
+title(xlab="Peak Storm Precipitation (mm)", line=1.3, cex.lab=1)#
+abline(1,0)#
+plot(series2,type="n",main="",ylab="",col="black", xlab="", xaxt="n", yaxt="n", xlim=c(100, 1000), ylim=c(0,9), ann=FALSE)#, ylim=c(0,max(series3951/10^5, na.rm=TRUE)))#,yaxt="n", log="y")#
+    #ticks <- seq(1970, 2017, by=5)#
+    #labels <- sapply(ticks, function(i) as.expression(bquote(10^ .(i))))#
+axis(2, at=c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9), cex.axis=0.75)#
+axis(1, at=c(100, 200, 300, 400, 500, 600, 700, 800, 900, 1000), cex.axis=0.75)#
+grid(NULL, NULL, lty=2, col="grey", lwd=0.5)#
+#x <- seq(1970,2016, by=1)#
+#polygon(c(x, rev(x)), c(RP1[,3], rev(RP1[,1])), col=rgb(1, 0, 0,0.3), border=NA)#
+lines(series2[,1], series2[,2], type="l",ylab="",col="black", xlab="")#
+lines(series2a[,1], series2a[,2], type="l",ylab="",col="black", xlab="", lty=2)#
+#axis(2, at=10^(2:5), labels=formatC(10^(2:5),format="f", digits=0), las=2, cex.axis=0.75)#, labels=labels)#
+#title(main="Hacienda Risk Ratio", line=0.5, cex.main=1)#
+title(ylab="Risk Ratio", line=1.5, cex.lab=1)#
+title(xlab="Peak Storm Precipitation (mm)", line=1.3, cex.lab=1)#
+abline(1,0)
+RL1 <- read.table(file= "/Volumes/KINGSTON/Maria Attribution/Output/PP By Station 1955_16/Sig Covar Stations/Paraiso_RelRisk.txt",  sep=",", header=T)#
+RL2 <- read.table(file= "/Volumes/KINGSTON/Maria Attribution/Output/PP By Station 1955_16/Sig Covar Stations/SantaIsabel_RelRisk.txt",  sep=",", header=T)#
+#RL3 <- read.table(file= "/Volumes/KINGSTON/Maria Attribution/Output/Juncos_RelRisk.txt",  sep=",", header=T)#
+preciprange <- seq(100, 1000, by=25)#
+png("/Volumes/KINGSTON/Maria Attribution/Output/MariaRRs_66Conf.png",3000,4000,res=600)#
+#par(mar=c(1,1,1,1), mgp=c(3, .5, 0), bg="white", mfrow=c(4,3), cex.lab=0.7, cex.axis=0.7)#
+par(bg="white", mar=c(3,3,2,1), mgp=c(3, .5, 0))#
+layout(matrix(c(1, 2), 2, 1, byrow=TRUE))#
+#par(mar=c(2,3,1,3), mgp=c(3, .5, 0),bg="white", mfrow=c(3,1), cex.lab=0.6, cex.axis=0.4, cex.main=0.6)#
+series1 <- cbind(seq(100, 1000, by=25),RL1[,3])#
+series1a <- cbind(seq(100, 1000, by=25),RL1[,4])#
+series2 <- cbind(seq(100, 1000, by=25),RL2[,3])#
+series2a <- cbind(seq(100, 1000, by=25),RL2[,4])#
+#series3 <- cbind(seq(100, 1000, by=25),RL3[,3])#
+#series3a <- cbind(seq(100, 1000, by=25),RL3[,4])#
+plot(series1,type="n",main="",ylab="",col="black", xlab="", xaxt="n", yaxt="n", xlim=c(100, 1000), ylim=c(0,3), ann=FALSE)#, ylim=c(0,max(series3951/10^5, na.rm=TRUE)))#,yaxt="n", log="y")#
+    #ticks <- seq(1970, 2017, by=5)#
+    #labels <- sapply(ticks, function(i) as.expression(bquote(10^ .(i))))#
+axis(2, at=c(0, 1, 2, 3), cex.axis=0.75)#
+axis(1, at=c(100, 200, 300, 400, 500, 600, 700, 800, 900, 1000), cex.axis=0.75)#
+grid(NULL, NULL, lty=2, col="grey", lwd=0.5)#
+#x <- seq(1970,2016, by=1)#
+#polygon(c(x, rev(x)), c(RP1[,3], rev(RP1[,1])), col=rgb(1, 0, 0,0.3), border=NA)#
+lines(series1[,1], series1[,2], type="l",ylab="",col="black", xlab="")#
+lines(series1a[,1], series1a[,2], type="l",ylab="",col="black", xlab="", lty=2)#
+#axis(2, at=10^(2:5), labels=formatC(10^(2:5),format="f", digits=0), las=2, cex.axis=0.75)#, labels=labels)#
+#title(main="Coloso Risk Ratio", line=0.5, cex.main=1)#
+title(ylab="Risk Ratio", line=1.5, cex.lab=1)#
+title(xlab="Peak Storm Precipitation (mm)", line=1.3, cex.lab=1)#
+abline(1,0)#
+plot(series2,type="n",main="",ylab="",col="black", xlab="", xaxt="n", yaxt="n", xlim=c(100, 1000), ylim=c(0,9), ann=FALSE)#, ylim=c(0,max(series3951/10^5, na.rm=TRUE)))#,yaxt="n", log="y")#
+    #ticks <- seq(1970, 2017, by=5)#
+    #labels <- sapply(ticks, function(i) as.expression(bquote(10^ .(i))))#
+axis(2, at=c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9), cex.axis=0.75)#
+axis(1, at=c(100, 200, 300, 400, 500, 600, 700, 800, 900, 1000), cex.axis=0.75)#
+grid(NULL, NULL, lty=2, col="grey", lwd=0.5)#
+#x <- seq(1970,2016, by=1)#
+#polygon(c(x, rev(x)), c(RP1[,3], rev(RP1[,1])), col=rgb(1, 0, 0,0.3), border=NA)#
+lines(series2[,1], series2[,2], type="l",ylab="",col="black", xlab="")#
+lines(series2a[,1], series2a[,2], type="l",ylab="",col="black", xlab="", lty=2)#
+#axis(2, at=10^(2:5), labels=formatC(10^(2:5),format="f", digits=0), las=2, cex.axis=0.75)#, labels=labels)#
+#title(main="Hacienda Risk Ratio", line=0.5, cex.main=1)#
+title(ylab="Risk Ratio", line=1.5, cex.lab=1)#
+title(xlab="Peak Storm Precipitation (mm)", line=1.3, cex.lab=1)#
+abline(1,0)#
+# plot(series3,type="n",main="",ylab="",col="black", xlab="", xaxt="n", yaxt="n", xlim=c(100, 1000), ylim=c(0,3), ann=FALSE)#, ylim=c(0,max(series3951/10^5, na.rm=TRUE)))#,yaxt="n", log="y")#
+#   #ticks <- seq(1970, 2017, by=5)#
+#   #labels <- sapply(ticks, function(i) as.expression(bquote(10^ .(i))))#
+# axis(2, at=c(0, 1, 2, 3), cex.axis=0.75)#
+# axis(1, at=c(100, 200, 300, 400, 500, 600, 700, 800, 900, 1000), cex.axis=0.75)#
+# grid(NULL, NULL, lty=2, col="grey", lwd=0.5)#
+# #x <- seq(1970,2016, by=1)#
+# #polygon(c(x, rev(x)), c(RP1[,3], rev(RP1[,1])), col=rgb(1, 0, 0,0.3), border=NA)#
+# lines(series3[,1], series3[,2], type="l",ylab="",col="black", xlab="")#
+# lines(series3a[,1], series3a[,2], type="l",ylab="",col="black", xlab="", lty=2)#
+# #axis(2, at=10^(2:5), labels=formatC(10^(2:5),format="f", digits=0), las=2, cex.axis=0.75)#, labels=labels)#
+# title(main="Juncos Risk Ratio", line=0.5, cex.main=1)#
+# title(ylab="Risk Ratio", line=1.5, cex.lab=1)#
+# title(xlab="Storm Total (mm)", line=1.5, cex.lab=1)#
+dev.off()
+?text
+par(bg="white", mar=c(3,3,2,1), mgp=c(3, .5, 0))#
+layout(matrix(c(1, 2), 2, 1, byrow=TRUE))#
+#par(mar=c(2,3,1,3), mgp=c(3, .5, 0),bg="white", mfrow=c(3,1), cex.lab=0.6, cex.axis=0.4, cex.main=0.6)#
+series1 <- cbind(seq(100, 1000, by=25),RL1[,3])#
+series1a <- cbind(seq(100, 1000, by=25),RL1[,4])#
+series2 <- cbind(seq(100, 1000, by=25),RL2[,3])#
+series2a <- cbind(seq(100, 1000, by=25),RL2[,4])#
+#series3 <- cbind(seq(100, 1000, by=25),RL3[,3])#
+#series3a <- cbind(seq(100, 1000, by=25),RL3[,4])#
+plot(series1,type="n",main="",ylab="",col="black", xlab="", xaxt="n", yaxt="n", xlim=c(100, 1000), ylim=c(0,3), ann=FALSE)#, ylim=c(0,max(series3951/10^5, na.rm=TRUE)))#,yaxt="n", log="y")#
+    #ticks <- seq(1970, 2017, by=5)#
+    #labels <- sapply(ticks, function(i) as.expression(bquote(10^ .(i))))#
+axis(2, at=c(0, 1, 2, 3), cex.axis=0.75)#
+axis(1, at=c(100, 200, 300, 400, 500, 600, 700, 800, 900, 1000), cex.axis=0.75)#
+grid(NULL, NULL, lty=2, col="grey", lwd=0.5)#
+#x <- seq(1970,2016, by=1)#
+#polygon(c(x, rev(x)), c(RP1[,3], rev(RP1[,1])), col=rgb(1, 0, 0,0.3), border=NA)#
+lines(series1[,1], series1[,2], type="l",ylab="",col="black", xlab="")#
+lines(series1a[,1], series1a[,2], type="l",ylab="",col="black", xlab="", lty=2)#
+#axis(2, at=10^(2:5), labels=formatC(10^(2:5),format="f", digits=0), las=2, cex.axis=0.75)#, labels=labels)#
+#title(main="Coloso Risk Ratio", line=0.5, cex.main=1)#
+title(ylab="Risk Ratio", line=1.5, cex.lab=1)#
+title(xlab="Peak Storm Precipitation (mm)", line=1.3, cex.lab=1)#
+abline(1,0)#
+text(100, 2.75, "a")
+par(bg="white", mar=c(3,3,2,1), mgp=c(3, .5, 0))#
+layout(matrix(c(1, 2), 2, 1, byrow=TRUE))#
+#par(mar=c(2,3,1,3), mgp=c(3, .5, 0),bg="white", mfrow=c(3,1), cex.lab=0.6, cex.axis=0.4, cex.main=0.6)#
+series1 <- cbind(seq(100, 1000, by=25),RL1[,3])#
+series1a <- cbind(seq(100, 1000, by=25),RL1[,4])#
+series2 <- cbind(seq(100, 1000, by=25),RL2[,3])#
+series2a <- cbind(seq(100, 1000, by=25),RL2[,4])#
+#series3 <- cbind(seq(100, 1000, by=25),RL3[,3])#
+#series3a <- cbind(seq(100, 1000, by=25),RL3[,4])#
+plot(series1,type="n",main="",ylab="",col="black", xlab="", xaxt="n", yaxt="n", xlim=c(100, 1000), ylim=c(0,3), ann=FALSE)#, ylim=c(0,max(series3951/10^5, na.rm=TRUE)))#,yaxt="n", log="y")#
+    #ticks <- seq(1970, 2017, by=5)#
+    #labels <- sapply(ticks, function(i) as.expression(bquote(10^ .(i))))#
+axis(2, at=c(0, 1, 2, 3), cex.axis=0.75)#
+axis(1, at=c(100, 200, 300, 400, 500, 600, 700, 800, 900, 1000), cex.axis=0.75)#
+grid(NULL, NULL, lty=2, col="grey", lwd=0.5)#
+#x <- seq(1970,2016, by=1)#
+#polygon(c(x, rev(x)), c(RP1[,3], rev(RP1[,1])), col=rgb(1, 0, 0,0.3), border=NA)#
+lines(series1[,1], series1[,2], type="l",ylab="",col="black", xlab="")#
+lines(series1a[,1], series1a[,2], type="l",ylab="",col="black", xlab="", lty=2)#
+#axis(2, at=10^(2:5), labels=formatC(10^(2:5),format="f", digits=0), las=2, cex.axis=0.75)#, labels=labels)#
+#title(main="Coloso Risk Ratio", line=0.5, cex.main=1)#
+title(ylab="Risk Ratio", line=1.5, cex.lab=1)#
+title(xlab="Peak Storm Precipitation (mm)", line=1.3, cex.lab=1)#
+abline(1,0)#
+text(100, 2.75, "a", cex=2)
+par(bg="white", mar=c(3,3,2,1), mgp=c(3, .5, 0))#
+layout(matrix(c(1, 2), 2, 1, byrow=TRUE))#
+#par(mar=c(2,3,1,3), mgp=c(3, .5, 0),bg="white", mfrow=c(3,1), cex.lab=0.6, cex.axis=0.4, cex.main=0.6)#
+series1 <- cbind(seq(100, 1000, by=25),RL1[,3])#
+series1a <- cbind(seq(100, 1000, by=25),RL1[,4])#
+series2 <- cbind(seq(100, 1000, by=25),RL2[,3])#
+series2a <- cbind(seq(100, 1000, by=25),RL2[,4])#
+#series3 <- cbind(seq(100, 1000, by=25),RL3[,3])#
+#series3a <- cbind(seq(100, 1000, by=25),RL3[,4])#
+plot(series1,type="n",main="",ylab="",col="black", xlab="", xaxt="n", yaxt="n", xlim=c(100, 1000), ylim=c(0,3), ann=FALSE)#, ylim=c(0,max(series3951/10^5, na.rm=TRUE)))#,yaxt="n", log="y")#
+    #ticks <- seq(1970, 2017, by=5)#
+    #labels <- sapply(ticks, function(i) as.expression(bquote(10^ .(i))))#
+axis(2, at=c(0, 1, 2, 3), cex.axis=0.75)#
+axis(1, at=c(100, 200, 300, 400, 500, 600, 700, 800, 900, 1000), cex.axis=0.75)#
+grid(NULL, NULL, lty=2, col="grey", lwd=0.5)#
+#x <- seq(1970,2016, by=1)#
+#polygon(c(x, rev(x)), c(RP1[,3], rev(RP1[,1])), col=rgb(1, 0, 0,0.3), border=NA)#
+lines(series1[,1], series1[,2], type="l",ylab="",col="black", xlab="")#
+lines(series1a[,1], series1a[,2], type="l",ylab="",col="black", xlab="", lty=2)#
+#axis(2, at=10^(2:5), labels=formatC(10^(2:5),format="f", digits=0), las=2, cex.axis=0.75)#, labels=labels)#
+#title(main="Coloso Risk Ratio", line=0.5, cex.main=1)#
+title(ylab="Risk Ratio", line=1.5, cex.lab=1)#
+title(xlab="Peak Storm Precipitation (mm)", line=1.3, cex.lab=1)#
+abline(1,0)#
+text(100, 2.75, "a", cex=2)#
+plot(series2,type="n",main="",ylab="",col="black", xlab="", xaxt="n", yaxt="n", xlim=c(100, 1000), ylim=c(0,9), ann=FALSE)#, ylim=c(0,max(series3951/10^5, na.rm=TRUE)))#,yaxt="n", log="y")#
+    #ticks <- seq(1970, 2017, by=5)#
+    #labels <- sapply(ticks, function(i) as.expression(bquote(10^ .(i))))#
+axis(2, at=c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9), cex.axis=0.75)#
+axis(1, at=c(100, 200, 300, 400, 500, 600, 700, 800, 900, 1000), cex.axis=0.75)#
+grid(NULL, NULL, lty=2, col="grey", lwd=0.5)#
+#x <- seq(1970,2016, by=1)#
+#polygon(c(x, rev(x)), c(RP1[,3], rev(RP1[,1])), col=rgb(1, 0, 0,0.3), border=NA)#
+lines(series2[,1], series2[,2], type="l",ylab="",col="black", xlab="")#
+lines(series2a[,1], series2a[,2], type="l",ylab="",col="black", xlab="", lty=2)#
+#axis(2, at=10^(2:5), labels=formatC(10^(2:5),format="f", digits=0), las=2, cex.axis=0.75)#, labels=labels)#
+#title(main="Hacienda Risk Ratio", line=0.5, cex.main=1)#
+title(ylab="Risk Ratio", line=1.5, cex.lab=1)#
+title(xlab="Peak Storm Precipitation (mm)", line=1.3, cex.lab=1)#
+abline(1,0)#
+text(100, 8.75, "a", cex=2)
+par(bg="white", mar=c(3,3,2,1), mgp=c(3, .5, 0))#
+layout(matrix(c(1, 2), 2, 1, byrow=TRUE))#
+#par(mar=c(2,3,1,3), mgp=c(3, .5, 0),bg="white", mfrow=c(3,1), cex.lab=0.6, cex.axis=0.4, cex.main=0.6)#
+series1 <- cbind(seq(100, 1000, by=25),RL1[,3])#
+series1a <- cbind(seq(100, 1000, by=25),RL1[,4])#
+series2 <- cbind(seq(100, 1000, by=25),RL2[,3])#
+series2a <- cbind(seq(100, 1000, by=25),RL2[,4])#
+#series3 <- cbind(seq(100, 1000, by=25),RL3[,3])#
+#series3a <- cbind(seq(100, 1000, by=25),RL3[,4])#
+plot(series1,type="n",main="",ylab="",col="black", xlab="", xaxt="n", yaxt="n", xlim=c(100, 1000), ylim=c(0,3), ann=FALSE)#, ylim=c(0,max(series3951/10^5, na.rm=TRUE)))#,yaxt="n", log="y")#
+    #ticks <- seq(1970, 2017, by=5)#
+    #labels <- sapply(ticks, function(i) as.expression(bquote(10^ .(i))))#
+axis(2, at=c(0, 1, 2, 3), cex.axis=0.75)#
+axis(1, at=c(100, 200, 300, 400, 500, 600, 700, 800, 900, 1000), cex.axis=0.75)#
+grid(NULL, NULL, lty=2, col="grey", lwd=0.5)#
+#x <- seq(1970,2016, by=1)#
+#polygon(c(x, rev(x)), c(RP1[,3], rev(RP1[,1])), col=rgb(1, 0, 0,0.3), border=NA)#
+lines(series1[,1], series1[,2], type="l",ylab="",col="black", xlab="")#
+lines(series1a[,1], series1a[,2], type="l",ylab="",col="black", xlab="", lty=2)#
+#axis(2, at=10^(2:5), labels=formatC(10^(2:5),format="f", digits=0), las=2, cex.axis=0.75)#, labels=labels)#
+#title(main="Coloso Risk Ratio", line=0.5, cex.main=1)#
+title(ylab="Risk Ratio", line=1.5, cex.lab=1)#
+title(xlab="Peak Storm Precipitation (mm)", line=1.3, cex.lab=1)#
+abline(1,0)#
+text(100, 2.75, "a", cex=2)#
+plot(series2,type="n",main="",ylab="",col="black", xlab="", xaxt="n", yaxt="n", xlim=c(100, 1000), ylim=c(0,9), ann=FALSE)#, ylim=c(0,max(series3951/10^5, na.rm=TRUE)))#,yaxt="n", log="y")#
+    #ticks <- seq(1970, 2017, by=5)#
+    #labels <- sapply(ticks, function(i) as.expression(bquote(10^ .(i))))#
+axis(2, at=c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9), cex.axis=0.75)#
+axis(1, at=c(100, 200, 300, 400, 500, 600, 700, 800, 900, 1000), cex.axis=0.75)#
+grid(NULL, NULL, lty=2, col="grey", lwd=0.5)#
+#x <- seq(1970,2016, by=1)#
+#polygon(c(x, rev(x)), c(RP1[,3], rev(RP1[,1])), col=rgb(1, 0, 0,0.3), border=NA)#
+lines(series2[,1], series2[,2], type="l",ylab="",col="black", xlab="")#
+lines(series2a[,1], series2a[,2], type="l",ylab="",col="black", xlab="", lty=2)#
+#axis(2, at=10^(2:5), labels=formatC(10^(2:5),format="f", digits=0), las=2, cex.axis=0.75)#, labels=labels)#
+#title(main="Hacienda Risk Ratio", line=0.5, cex.main=1)#
+title(ylab="Risk Ratio", line=1.5, cex.lab=1)#
+title(xlab="Peak Storm Precipitation (mm)", line=1.3, cex.lab=1)#
+abline(1,0)#
+text(100, 8, "b", cex=2)
+RL1 <- read.table(file= "/Volumes/KINGSTON/Maria Attribution/Output/PP By Station 1955_16/Sig Covar Stations/Paraiso_RelRisk.txt",  sep=",", header=T)#
+RL2 <- read.table(file= "/Volumes/KINGSTON/Maria Attribution/Output/PP By Station 1955_16/Sig Covar Stations/SantaIsabel_RelRisk.txt",  sep=",", header=T)#
+#RL3 <- read.table(file= "/Volumes/KINGSTON/Maria Attribution/Output/Juncos_RelRisk.txt",  sep=",", header=T)#
+preciprange <- seq(100, 1000, by=25)#
+png("/Volumes/KINGSTON/Maria Attribution/Output/MariaRRs_66Conf.png",3000,4000,res=600)#
+#par(mar=c(1,1,1,1), mgp=c(3, .5, 0), bg="white", mfrow=c(4,3), cex.lab=0.7, cex.axis=0.7)#
+par(bg="white", mar=c(3,3,2,1), mgp=c(3, .5, 0))#
+layout(matrix(c(1, 2), 2, 1, byrow=TRUE))#
+#par(mar=c(2,3,1,3), mgp=c(3, .5, 0),bg="white", mfrow=c(3,1), cex.lab=0.6, cex.axis=0.4, cex.main=0.6)#
+series1 <- cbind(seq(100, 1000, by=25),RL1[,3])#
+series1a <- cbind(seq(100, 1000, by=25),RL1[,4])#
+series2 <- cbind(seq(100, 1000, by=25),RL2[,3])#
+series2a <- cbind(seq(100, 1000, by=25),RL2[,4])#
+#series3 <- cbind(seq(100, 1000, by=25),RL3[,3])#
+#series3a <- cbind(seq(100, 1000, by=25),RL3[,4])#
+plot(series1,type="n",main="",ylab="",col="black", xlab="", xaxt="n", yaxt="n", xlim=c(100, 1000), ylim=c(0,3), ann=FALSE)#, ylim=c(0,max(series3951/10^5, na.rm=TRUE)))#,yaxt="n", log="y")#
+    #ticks <- seq(1970, 2017, by=5)#
+    #labels <- sapply(ticks, function(i) as.expression(bquote(10^ .(i))))#
+axis(2, at=c(0, 1, 2, 3), cex.axis=0.75)#
+axis(1, at=c(100, 200, 300, 400, 500, 600, 700, 800, 900, 1000), cex.axis=0.75)#
+grid(NULL, NULL, lty=2, col="grey", lwd=0.5)#
+#x <- seq(1970,2016, by=1)#
+#polygon(c(x, rev(x)), c(RP1[,3], rev(RP1[,1])), col=rgb(1, 0, 0,0.3), border=NA)#
+lines(series1[,1], series1[,2], type="l",ylab="",col="black", xlab="")#
+lines(series1a[,1], series1a[,2], type="l",ylab="",col="black", xlab="", lty=2)#
+#axis(2, at=10^(2:5), labels=formatC(10^(2:5),format="f", digits=0), las=2, cex.axis=0.75)#, labels=labels)#
+#title(main="Coloso Risk Ratio", line=0.5, cex.main=1)#
+title(ylab="Risk Ratio", line=1.5, cex.lab=1)#
+title(xlab="Peak Storm Precipitation (mm)", line=1.3, cex.lab=1)#
+abline(1,0)#
+text(100, 2.75, "a", cex=2)#
+plot(series2,type="n",main="",ylab="",col="black", xlab="", xaxt="n", yaxt="n", xlim=c(100, 1000), ylim=c(0,9), ann=FALSE)#, ylim=c(0,max(series3951/10^5, na.rm=TRUE)))#,yaxt="n", log="y")#
+    #ticks <- seq(1970, 2017, by=5)#
+    #labels <- sapply(ticks, function(i) as.expression(bquote(10^ .(i))))#
+axis(2, at=c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9), cex.axis=0.75)#
+axis(1, at=c(100, 200, 300, 400, 500, 600, 700, 800, 900, 1000), cex.axis=0.75)#
+grid(NULL, NULL, lty=2, col="grey", lwd=0.5)#
+#x <- seq(1970,2016, by=1)#
+#polygon(c(x, rev(x)), c(RP1[,3], rev(RP1[,1])), col=rgb(1, 0, 0,0.3), border=NA)#
+lines(series2[,1], series2[,2], type="l",ylab="",col="black", xlab="")#
+lines(series2a[,1], series2a[,2], type="l",ylab="",col="black", xlab="", lty=2)#
+#axis(2, at=10^(2:5), labels=formatC(10^(2:5),format="f", digits=0), las=2, cex.axis=0.75)#, labels=labels)#
+#title(main="Hacienda Risk Ratio", line=0.5, cex.main=1)#
+title(ylab="Risk Ratio", line=1.5, cex.lab=1)#
+title(xlab="Peak Storm Precipitation (mm)", line=1.3, cex.lab=1)#
+abline(1,0)#
+text(100, 8, "b", cex=2)#
+# plot(series3,type="n",main="",ylab="",col="black", xlab="", xaxt="n", yaxt="n", xlim=c(100, 1000), ylim=c(0,3), ann=FALSE)#, ylim=c(0,max(series3951/10^5, na.rm=TRUE)))#,yaxt="n", log="y")#
+#   #ticks <- seq(1970, 2017, by=5)#
+#   #labels <- sapply(ticks, function(i) as.expression(bquote(10^ .(i))))#
+# axis(2, at=c(0, 1, 2, 3), cex.axis=0.75)#
+# axis(1, at=c(100, 200, 300, 400, 500, 600, 700, 800, 900, 1000), cex.axis=0.75)#
+# grid(NULL, NULL, lty=2, col="grey", lwd=0.5)#
+# #x <- seq(1970,2016, by=1)#
+# #polygon(c(x, rev(x)), c(RP1[,3], rev(RP1[,1])), col=rgb(1, 0, 0,0.3), border=NA)#
+# lines(series3[,1], series3[,2], type="l",ylab="",col="black", xlab="")#
+# lines(series3a[,1], series3a[,2], type="l",ylab="",col="black", xlab="", lty=2)#
+# #axis(2, at=10^(2:5), labels=formatC(10^(2:5),format="f", digits=0), las=2, cex.axis=0.75)#, labels=labels)#
+# title(main="Juncos Risk Ratio", line=0.5, cex.main=1)#
+# title(ylab="Risk Ratio", line=1.5, cex.lab=1)#
+# title(xlab="Storm Total (mm)", line=1.5, cex.lab=1)#
+dev.off()
+library(sp)#
+library(rgdal)#
+library(maptools)#
+library(gstat)#
+library(fields)#
+library(rasterVis)#
+library(classInt)#
+library(SDMTools)#
+# Read in pcr data#
+prdata <- read.csv(file= "/Volumes/KINGSTON/R Class/Lectures/Interpolation/data/Maria Precip.csv", header=T)#
+# Set coordinates and thereby create spatial data object#
+coordinates(prdata) <- cbind(prdata$Long, prdata$Lat)#
+# Set mapping projection for spatial data object#
+# http://spatialreference.org/#
+proj4string(prdata) <- CRS("+proj=longlat +ellps=WGS84 +datum=WGS84")#
+# Transform into projected coordinate system#
+prdata <- spTransform(prdata, CRS("+proj=utm +zone=20 +ellps=clrk66 +towgs84=11,72,-101,0,0,0,0 +units=m +no_defs "))#
+# Read in US state shapefile, select to PR, assign lat/long coord system#
+US <- readShapePoly(fn="/Volumes/KINGSTON/R Class/Lectures/Interpolation/data/cb_2017_us_state_5m.shp")#
+PR <- US[US@data$NAME=="Puerto Rico",]#
+proj4string(PR) <- CRS("+proj=longlat +ellps=WGS84 +datum=WGS84")#
+#
+# Transform into projected coordinate system#
+PR <- spTransform(PR, CRS("+proj=utm +zone=20 +ellps=clrk66 +towgs84=11,72,-101,0,0,0,0 +units=m +no_defs "))#
+# Write out shapefile of PR#
+writeOGR(PR,"/Volumes/KINGSTON/R Class/Lectures/Interpolation/data/PR Shapefile","PRBoundary","ESRI Shapefile")#
+#
+#########################################
+#### Prep for Spatial Interpolation #####
+#########################################
+#
+### Create prediction grid#
+# Create data frame of center points at a 500m x 500m resolution#
+grdpts <- makegrid(PR, cellsize = c(500, 500))#
+# Transform the grid points into spatial points#
+spgrd <- SpatialPoints(grdpts, proj4string = CRS(proj4string(PR)))#
+# Convert to spatial pixels (spatial grid) object, slecting only points that fall within PR polygon#
+spgrdPR <- SpatialPixels(spgrd[PR,])#
+#
+### Create training and test datasets for validation#
+i <- sample(nrow(prdata),round(nrow(prdata)*20/100)) #exclude 20% of the data#
+training <- prdata[-i,]#
+test <- prdata[i,]#
+#####################################
+#### Inverse Distance Weighting #####
+#####################################
+#### Perform Inverse Distance Weighting spatial interpolation on training sample#
+idwPR <- idw(PRCP~1, training, spgrdPR) #can specify IDW power with "idp=" argument#
+#
+# Plot the idw surface#
+brkpts <- c(100, 200, 300, 400, 500, 600, 700)#
+png("/Volumes/KINGSTON/R Class/Lectures/Interpolation/output/PR_PRCP_MARIA_IDW.png",4000,2000,res=600)#
+par(bg="white", mar=c(0,0,0,0))#
+image.plot(idwPR, zlim=c(0,800), axes=FALSE,xlab="", ylab="", graphics.reset=TRUE, horizontal=TRUE, #
+	legend.shrink=0.3, col=brewer.pal('Blues', n=6), legend.lab="mm", breaks=brkpts)#
+dev.off()#
+# Alternative way to plot#
+idwPR_raster <- raster(idwPR)#
+myTheme = rasterTheme(region=brewer.pal('Blues', n=6))#
+levelplot(idwPR_raster, par.settings=myTheme)#
+dev.print(pdf, file = "/Volumes/KINGSTON/R Class/Lectures/Interpolation/output/PR_PRCP_MARIA_IDW.pdf")#
+dev.off()#
+#
+### Assess interpolation ####
+#
+# Create spatial points of test dataset#
+sp.pt <- SpatialPoints(cbind(test$Long,test$Lat))#
+# Set mapping projection for spatial points#
+proj4string(sp.pt) <- CRS("+proj=longlat +ellps=WGS84 +datum=WGS84")#
+# Transform into projected coordinate system#
+sp.pt <- spTransform(sp.pt, CRS("+proj=utm +zone=20 +ellps=clrk66 +towgs84=11,72,-101,0,0,0,0 +units=m +no_defs "))#
+# Extract spatial test points from IDW raster#
+testidw <- extract(idwPR_raster, sp.pt)#
+#
+### Calculate measures of fit#
+# Pearson's R Squared (square of Pearson correlation coefficient)#
+RSQR <- as.numeric(cor.test(test$PRCP, testidw)$estimate)^2#
+# Root Mean Square Deviation#
+RMSD <- sqrt(sum((test$PRCP-testidw)^2)/length(test$PRCP))   #
+#
+### Visualize error of IDW interpolation#
+# Take difference between test dataset and interpolated IDW surface#
+diff <- as.data.frame(abs(test$PRCP-testidw))#
+# Define same color palette as IDW surface and error color ramp#
+plotclr <- brewer.pal('Blues', n=6)#
+nclr <- 5#
+errclr <- brewer.pal('Reds', n=5)#
+# Define class intervals for difference#
+errclass <- classIntervals(diff[,1], nclr, style="pretty")#
+# Assign R color codes to each class#
+errcolcode <- findColours(errclass, errclr)#
+# Assign coordinates to difference#
+coordinates(diff) <- coordinates(sp.pt)#
+# Add test points to IDW map, colored by interval#
+brkpts <- c(100, 200, 300, 400, 500, 600, 700)#
+plot(idwPR_raster, col=plotclr, breaks=brkpts)#
+points(diff, pch = 16, col= errcolcode)#
+# Add error legend to map#
+# Set points (boundary box) for placing legend on map#
+pnts = cbind(x = c(200000,230000,230000,200000), y = c(1940000,1940000,1970000,1970000))#
+# Add legend with labels#
+legend.gradient(pnts, errclr, c("0", "100"), title="Error")#
+# Save map as PDF#
+dev.print(pdf, file = "/Volumes/KINGSTON/R Class/Lectures/Interpolation/output/PR_PRCP_MARIA_IDW_ERROR.pdf")#
+dev.off()#
+#
+###########################
+#### Ordinary Kriging #####
+###########################
+### Perform Ordinary Kriging#
+# Variogram cloud#
+v.prcp.c <- variogram(PRCP ~ 1, data=training, cloud=T) #specify "cutoff=" to limit spatial distance between point pairs #
+plot(v.prcp.c)#
+# SemiVariogram#
+v.prcp <- variogram(PRCP  ~ 1, data=training)#
+plot(v.prcp)#
+# Select point pairs that have high/low spatial correlation#
+sel <- plot( variogram(PRCP ~ 1, training, cloud=TRUE), digitize=TRUE)
+plot(sel, training)
+plot(PR, add=T)
+plot(PR, add=TRUE)
+lifedata<- read.table(file.choose(), sep="\t", header=FALSE)
+colnames(lifedata)<-c("part", "time", "sex", "age", "diff", "bodytemp", "heartrate", "marriage", "job", "family", "edu", "support", "health")
+Change these file directories to location of your output folder!!!#
+pdf(file="/Volumes/KINGSTON/UA R Workshop/output/convars.pdf")#
+sink("/Volumes/KINGSTON/UA R Workshop/output/convars.txt")
+par(mfrow=c(1,2))#
+## Create histogram of dependent variable (the difference measure)#
+hist(lifedata$diff, xlab="Difference Measure", main=NA, col="skyblue")#
+## Add a one dimensional representation of the data along the x axis#
+rug(lifedata$diff)#
+## Draw a bounding box around the histogram plot#
+box()
+boxplot(lifedata$diff, ylab="Difference Measure", main=NA, col="skyblue")#
+## Restore the graphics device to single plot configuration#
+par(mfrow=c(1,1))#
+## Add a title to the plot#
+title(main="Difference Measure")#
+## Create a data frame with dependent variable summary statistics#
+diff<-data.frame(n=length(lifedata$diff), min=min(lifedata$diff), #
+		max=max(lifedata$diff), mean=mean(lifedata$diff), #
+		median=median(lifedata$diff), var=var(lifedata$diff), #
+		sd=sd(lifedata$diff))#
+## Print the data frame, rounded to three digits #
+print("Diff")#
+print(diff, digits=3)
+Repeat above for age independent variable#
+par(mfrow=c(1,2))#
+hist(lifedata$age, xlab="Age(in Months)", main=NA, #
+		col="skyblue")#
+rug(lifedata$age)#
+box()#
+boxplot(lifedata$age, ylab="Age(in Months)", main=NA, #
+		col="skyblue")#
+par(mfrow=c(1,1))#
+title(main="Participant Age")#
+age<-data.frame(n=length(lifedata$age), min=min(lifedata$age), #
+		max=max(lifedata$age), mean=mean(lifedata$age), #
+		median=median(lifedata$age), var=var(lifedata$age), #
+		sd=sd(lifedata$age))#
+print("Age")#
+print(age, digits=3)
+Stop the sink and close the graphics device#
+sink()#
+dev.off()
+Remove age and diff objects from workspace#
+rm(age)#
+rm(diff)#
+###########
+##	Explore the categorical variables:#
+## Set up storage of all following figures in a pdf doc and tabular info in a text file#
+## Change these file directories to location of your output folder!!!#
+pdf(file="/Volumes/KINGSTON/UA R Workshop/output/catvars.pdf")#
+sink("/Volumes/KINGSTON/UA R Workshop/output/catvars.txt")#
+## cat is simpler alternative to print#
+cat("Sex of Participants")#
+## table performs counts at each factor level of the variable#
+table(lifedata$sex)#
+cat("Marital Status")#
+table(lifedata$marriage)#
+cat("Employment Status")#
+table(lifedata$job)#
+cat("Surviving Family Members")#
+table(lifedata$family)#
+cat("Education Level")#
+table(lifedata$edu)
+Set up graphics device to display a 2 row by 3 column configuration of plots#
+par(mfrow=c(2,3))#
+## Create bar plots of proportion of subjects in each factor of the categorical variable#
+barplot(table(lifedata$sex)/length(lifedata$sex), col="skyblue", ylim=c(0,1), #
+xlab="sex", ylab="Proportion", main="Sex of Participants", names=c("Female", "Male"))#
+## Add bounding box#
+box()#
+barplot(table(lifedata$marriage)/length(lifedata$marriage), col="skyblue", ylim=c(0,1), #
+xlab="Married", main="Marital Status", names=c("No", "Yes"))#
+box()#
+barplot(table(lifedata$job)/length(lifedata$job), col="skyblue", ylim=c(0,1), #
+xlab="Employed", main="Employment Status", names=c("No", "Yes"))#
+box()#
+barplot(table(lifedata$family)/length(lifedata$family), col="skyblue", ylim=c(0,1), #
+xlab="Surviving Family", ylab="Proportion", main="Surviving Family Members", names=c("No", "Yes"))#
+box()#
+barplot(table(lifedata$edu)/length(lifedata$edu), col="skyblue", ylim=c(0,1), #
+xlab="Education", main="Education Level", names=c("H", "U", "G"))#
+box()#
+## Restore the graphics device to single plot configuration#
+par(mfrow=c(1,1))#
+## Stop the sink and close the graphics device#
+sink()#
+dev.off()
+Above we explored the variables descriptively, but let's now get inferential#
+## 	and look for statistical differences within the explanatory (IV) variables#
+##  Descriptive Stats, Boxplots, T-test, ANOVA, User function(), if/else(), cleaning #
+##  output(mtext() & labels)#
+###  Categorical Variables#
+##  Attach the lifedata (so we can use variable names without having to reference the column)#
+attach(lifedata)#
+## Apply Factors to Variables (so that we can use more detailed descriptors as labels)#
+sex = factor(sex, labels=c("Female", "Male"))#
+marriage = factor(marriage, labels=c("Not Married", "Married"))#
+job = factor(job, labels=c("Unemployed", "Employed"))#
+family = factor(family, labels=c("No Family", "Have Family"))#
+edu = factor(edu, labels=c("HS", "UGrad", "Grad"))#
+## Create data frames for the dependent variable and categorical IVs#
+lifedata.dv<-diff#
+lifedata.cat <- data.frame(sex, marriage, job, family, edu)#
+##Create vector of Variable Names#
+vars.cat<-colnames(lifedata.cat)#
+##  Function for analysis of categorical IVs against the continuous DV#
+##  Functions can come as part of packages you install or you can create your own#
+##  Here the function is to be named concatfun and it takes 3 arguments#
+##  Here the function is defined, then it can be called and passed the 3 arguments#
+concatfun<-function(eachvar, name, response){#
+			## Print summary stats of the DV by each IV and factor, use ?tapply to read about what it does #
+			print(tapply(response, eachvar, summary))#
+			## Create box plot of DV by each IV and factor#
+			boxplot(response~eachvar, main=name, ylab="Difference Measure")#
+			## if statement adds a conditional branch to the program flow#
+			## here if the variable has two levels (factors i.e. male/female)#
+			## the first branch is executed, if more than two levels the second #
+			## branch (after the else if) is executed#
+			if(length(levels(eachvar))== 2) {#
+				## if 2 levels we can perform a two sample t test#
+				ttest<-t.test(response~eachvar)#
+				print(ttest)#
+				## Here we have a nested if else to deal with the t test p value#
+				## if the p value is <0.001 (very significant) we store that as a#
+				## text string to variable pval, else we round the value and store to pval#
+				if(ttest$p.value<0.001){#
+					pval<-"<0.001"#
+				} else{#
+					pval<-round(ttest$p.value, digits=4)#
+				}#
+				## Here we are thinking about the output figure and display of the pval#
+				## paste together "p-value" with the t test p value#
+				pvallab<-paste("p-value:", pval)#
+				## Add that text to the box plot#
+				mtext(pvallab)#
+				} #
+			else if(length(levels(eachvar))> 2) {#
+				## if more than two levels perform an ANOVA#
+				fit<-aov(response ~ eachvar, data=lifedata)#
+				fitsum<-summary(fit)#
+				print("ANOVA")#
+				print(fitsum)#
+				## same p value treatment as above#
+				if(fitsum[[1]][, 5][1]<0.001){#
+					pval<-"<0.001"#
+				} else{#
+					pval<-round(fitsum[[1]][, 5][1], digits=4)#
+				}#
+				pvallab<-paste("p-value:", pval)#
+				mtext(pvallab)#
+				}	#
+}#
+## Set up storage of all following figures in a pdf doc and tabular info in a text file#
+## Change these file directories to location of your output folder!!!#
+pdf(file="/Volumes/KINGSTON/UA R Workshop/output/catvarstats.pdf")#
+sink("/Volumes/KINGSTON/UA R Workshop/output/catvarstats.txt")
+Loop for sending categorical variables to categorical analysis function defined above#
+##  loop iterates through the length of the cat variable data frame, pulling out one #
+##  variable per iteration#
+for (i in 1:length(lifedata.cat)) {#
+	eachvar <- lifedata.cat[,i]#
+	name <- vars.cat[i]#
+	concatfun(eachvar, name, lifedata.dv)#
+}#
+## Stop the sink and close the graphics device#
+sink()#
+dev.off()
+Create data frame for the continuous IVs#
+lifedata.con <- data.frame(age, bodytemp, heartrate, support, health)#
+## Create vector of Variable Names#
+vars.con<-colnames(lifedata.con)#
+## Plot all continuous DVs vs. IV#
+pdf(file="/Volumes/KINGSTON/UA R Workshop/output/convarscatter.pdf")#
+## Set up graphics device to display a 2 row by 3 column configuration of plots#
+par(mfrow=c(2, 3))#
+## Loop through con variables, plotting each against DV#
+for (i in 1:length(lifedata.con)) {#
+	eachvar <- lifedata.con[,i]#
+	name <- vars.con[i]#
+	plot(eachvar, lifedata.dv, xlab=name, ylab="Difference Measure")#
+}#
+## Restore the graphics device to single plot configuration#
+par(mfrow=c(1,1)) #
+dev.off()#
+## Function for analysis of continuous IVs against continuous DV#
+conconfun<-function(eachvar, name, response){#
+		## Create nice text header for stats output#
+		header<-paste("##########", name, "##########")#
+		## print the nice header#
+		print(header)#
+		## print the results of a Pearson's Correlation#
+		print(cor.test(response, eachvar))#
+		## Plot IV vs DV as scatter plot#
+		plot(eachvar, response, xlab=name, ylab="Difference Measure", type="p", pch=19, col="black")#
+		## Fit a linear model#
+		fit<-lm(response~eachvar)#
+		## Add red line of model fit to plot#
+		abline(fit, col="red", lwd=2)#
+		## Create summary of model fit#
+		fitsum<-summary(fit)#
+		## print model summary#
+		print(fitsum)#
+		## if else similar to previous cat function to parse out p values#
+		if(fitsum$coef[2,4]<0.001){#
+			pval<-"<0.001"#
+		} else{#
+			pval<-round(fitsum$coef[2,4], digits=4)#
+		}#
+		## create text string for adjusted r squared and p value#
+		labtext<-paste("Adj. R^2:", round(fitsum$adj.r.squared, digits=4), "p-value:", pval)#
+		## add text string to plot#
+		mtext(labtext, side=3) #
+		## Set graphics device using layout command to a 2x2 grid that will be populated by 4 figures#
+		layout(matrix(c(1,2,3,4),2,2))#
+		## Plot the model diagnostics#
+		plot(fit)#
+		## Reset graphics device#
+		par(mfrow=c(1,1))#
+}#
+## Set up storage of all following figures in a pdf doc and tabular info in a text file#
+## Change these file directories to location of your output folder for lab 3!!!#
+pdf(file="/Volumes/KINGSTON/UA R Workshop/output/convarstats.pdf")#
+sink("/Volumes/KINGSTON/UA R Workshop/output/convarstats.txt")#
+##Loop for sending continuous variables to continuous analysis function	#
+for (i in 1:length(lifedata.con)) {#
+	eachvar <- lifedata.con[,i]#
+	name <- vars.con[i]#
+	conconfun(eachvar, name, lifedata.dv)#
+}#
+## Clean up#
+## Stop the sink and close the graphics device#
+sink()#
+dev.off()
+2+2
+THist <- read.table("/Users/davidkeellings/Downloads/Tuscaloosa Max T.txt", header=TRUE, sep="\t")
+head(THist)
+quantile(THist[,4], 0.99)
+summary(THist[,4])
+tail(THist)
+THist <- read.table("/Users/davidkeellings/Downloads/Tuscaloosa Max T.txt", header=TRUE, sep="\t")
+summary(THist[,4])
+quantile(THist[,4], 0.99, na.rm=TRUE)
+THist[max(THist[,4]),]
+THist[max(THist[,4], na.rm=TRUE),]
+dim(THist)
+max(THist[,4], na.rm=TRUE)
+THist[THist[,4]==max(THist[,4], na.rm=TRUE),]
+na.omit(THist[THist[,4]==max(THist[,4], na.rm=TRUE),])
+THist <- read.table("/Users/davidkeellings/Downloads/Tuscaloosa Max T.txt", header=TRUE, sep="\t")
+na.omit(THist[THist[,4]==max(THist[,4], na.rm=TRUE),])
+statdata[,6] <- as.Date(statdata[,6], "%m/%d/%y")
+dts <- as.Date(THist[,3], "%m/%d/%Y")
+head(dts)
+tail(dts)
+dts <- seq(as.Date("1900/1/1"), as.Date("2019/6/10"), "days")
+head(dts)
+tail(dts)
+THist <- cbind(THist, dts)
+?pad
+library(padr)
+?pad
+mk.test(THist[!is.na(THist[,4]),4])
+library(trend)
+mk.test(THist[!is.na(THist[,4]),4])
+THist <- read.table("/Users/davidkeellings/Downloads/Tuscaloosa Max T.txt", header=TRUE, sep="\t")
+na.omit(THist[THist[,4]==max(THist[,4], na.rm=TRUE),])
+head(THist)
+tail(THist)
+THist[THist[,4]==max(THist[,4], na.rm=TRUE),]
+THist <- read.table("/Users/davidkeellings/Downloads/Tuscaloosa Max T.txt", header=TRUE, sep="\t")
+summary(THist[,4])
+na.omit(THist[THist[,4]==max(THist[,4], na.rm=TRUE),])
+THist <- read.table("/Users/davidkeellings/Downloads/Tuscaloosa Max T.txt", header=TRUE, sep="\t")
+head(THist)
+dim(THist)
+THist <- Thist[,1:5]
+na.omit(THist[THist[,4]==max(THist[,4], na.rm=TRUE),])
+THist <- THist[,1:5]
+na.omit(THist[THist[,4]==max(THist[,4], na.rm=TRUE),])
+yrs <- unique(THist[,5])
+head(yrs)
+y<-1901
+data <- THist[THist[,5]==y,]
+head(data)
+tail(data)
+annmaxs <- vector()#
+for (y in yrs){#
+#
+    data <- THist[THist[,5]==y,]#
+    annmax <- max(data[,5, na.rm=TRUE])#
+    annmaxs <- c(annmaxs, annmax)#
+}
+annmaxs <- vector()#
+for (y in yrs){#
+#
+    data <- THist[THist[,5]==y,]#
+    annmax <- max(data[,5], na.rm=TRUE)#
+    annmaxs <- c(annmaxs, annmax)#
+}
+annmaxs
+annmaxs <- vector()#
+for (y in yrs){#
+#
+    data <- THist[THist[,5]==y,]#
+    annmax <- max(data[,4], na.rm=TRUE)#
+    annmaxs <- c(annmaxs, annmax)#
+}
+annmaxs
+mk.test(annmaxs)
+annmaxs!=-Inf
+annmaxs <- annmaxs[annmaxs!=-Inf]
+annmaxs
+mk.test(annmaxs)
+sens.slope(annmaxs)
+first <- THist[THist[,5]%in%seq(1900, 1960, 1),]
+head(first)
+tail(first)
+second <- THist[THist[,5]%in%seq(1961, 2019, 1),]
+first <- THist[THist[,5]%in%seq(1900, 1960, 1),4]
+second <- THist[THist[,5]%in%seq(1961, 2019, 1),4]
+head(second)
+firstbins <- hist(first, breaks=seq(floor(min(second,first,na.rm=T)), ceiling(max(second,first, na.rm=T)),1), plot=F)#
+secondbins <- hist(second, breaks=seq(floor(min(second,first,na.rm=T)), ceiling(max(second,first, na.rm=T)),1), plot=F)
+plot(firstbins)
+plot(secondbins, add=T)
+plot(firstbins)
+plot(secondbins, col="red",add=T)
+test <- THist[order(THist[,4]),]
+head(test)
+test <- THist[order(-THist[,4]),]
+head(test)
+head(test, 100)
+head(test, 150)
+head(test, 200)
+head(test, 300)
+head(test, 400)
+head(test, 500)
+head(test, 600)
+tail(THist)
+tail(THist, 20)
+lifedata <- read.table(file.choose(), sep="\t", header=FALSE)
+library("spacetime")
+library("reshape")
+library(xts)
+path <- "/Volumes/KINGSTON/Udemy/Section 2/Part 1/"
+path <- "/Volumes/KINGSTON/Udemy/Section 2/Part 2/"
+prior <- load(paste(path, "output/Global_Temperature.RData", sep=""), verbose=TRUE)
+gt.ts
+data("AirPassengers")
+AP <- AirPassengers
+png("/Volumes/KINGSTON/Udemy/Section 2/Part 2/Exercise/AP_ts",4000,4000,res=600)
+plot(AP)
+dev.off()
+png("/Volumes/KINGSTON/Udemy/Section 2/Part 2/Exercise/AP_ts.png",4000,4000,res=600)#
+plot(AP)#
+dev.off()
+file.path()
+fp <- readClipboard()
+?readClipboard
+readClipboard()
+2+2
+a <- 2
+a
+2+2
+lifedata <- read.table(file.choose(), sep="\t", header=FALSE)#
+#
+##  Set column names#
+colnames(lifedata) <- c("part", "time", "sex", "age", "diff", "bodytemp", "heartrate", "marriage", "job", "family", "edu", "support", "health")
+head(lifedata)
+summary(lifedata)
+1430/12
+?rowSums
+is.na(lifedata)
+lifedata[rowSums(is.na(lifedata)) > 0,]
+na.omit(lifedata)
+rowSums(is.na(lifedata))
+lifedata <- lifedata[rowSums(is.na(lifedata)) < 2,]
+summary(lifedata)
+lifedata[rowSums(is.na(lifedata)) > 0,]
+lifedata <- read.table(file.choose(), sep="\t", header=FALSE)
+colnames(lifedata) <- c("part", "time", "sex", "age", "diff", "bodytemp", "heartrate", "marriage", "job", "family", "edu", "support", "health")#
+#
+##  Check the dataset for errors#
+summary(lifedata)#
+boxplot(lifedata$age)#
+boxplot(lifedata$bodytemp)#
+is.na(lifedata)#
+lifedata[rowSums(is.na(lifedata)) > 0,]
+na.omit(lifedata)
+rowSums(is.na(lifedata)) < 2
+lifedata[rowSums(is.na(lifedata)) < 2,]
+lifedata <- lifedata[rowSums(is.na(lifedata)) < 2,]
+summary(lifedata)
+lifedata[rowSums(is.na(lifedata)) > 0,]
+lifedata$bodytemp[is.na(lifedata$bodytemp)]
+lifedata$bodytemp[is.na(lifedata$bodytemp)] <- median(lifedata$bodytemp, na.rm = TRUE)
+summary(lifedata)
+boxplot.stats(lifedata$bodytemp)
+usa <- readOGR("Macintosh HD⁩ ▸ ⁨Users⁩ ▸ ⁨davidkeellings⁩ ▸ ⁨Downloads⁩ ▸ ⁨cb_2016_us_state_20m⁩/cb_2016_us_state_20m.shp")
+library(rgdal)
+usa <- readOGR("Macintosh HD⁩ ▸ ⁨Users⁩ ▸ ⁨davidkeellings⁩ ▸ ⁨Downloads⁩ ▸ ⁨cb_2016_us_state_20m⁩/cb_2016_us_state_20m.shp")
+usa <- readOGR("/Users/davidkeellings/Downloads/cb_2016_us_state_20m/cb_2016_us_state_20m.shp")
+proj4string(usa) <- CRS("+proj=longlat +ellps=WGS84 +datum=WGS84")
+usa <- readOGR("/Users/davidkeellings/Downloads/cb_2016_us_state_20m/cb_2016_us_state_20m.shp")
+str(usa)
+usa <- readOGR("/Users/davidkeellings/Downloads/cb_2016_us_state_20m/cb_2016_us_state_20m.shp")
+str(usa)
+str(newusa)
+usa <- readOGR("/Users/davidkeellings/Downloads/cb_2016_us_state_20m/cb_2016_us_state_20m.shp")
+newusa <- usa %>% subset(!NAME %in% c("Alaska","Hawaii","Puerto Rico")) #%>% simplify_shape(0.2)
+library(magrittr)
+newusa <- usa %>% subset(!NAME %in% c("Alaska","Hawaii","Puerto Rico")) #%>% simplify_shape(0.2)
+str(newusa)
+newusa$NAME
+summary(newusa$NAME)
+test <-spTransform(newusa, CRSobj = "+proj=laea +lat_0=45 +lon_0=-100 +x_0=0 +y_0=0 +a=6370997 +b=6370997 +units=m +no_defs")
+CRS(test)
+proj4string(test)
+plot(test)
+map.scale()
+library(maps)
+map.scale()
+plot(usa)
+map.scale()
+plot(test)
+map.scale()
+map.scale(relwidth = 0.5)
+str(test)
+plot(usa)
+map.scale()
+library(SDMTools)
+plot(test)
+Scalebar()
+?scaleBar
+library(mapmisc)
+scaleBar(test, pos="bottomleft")
+library(prettmapr)
+library(prettymapr)
+addscalebar(plotunit="m")
+proj4string(usa)
+sink("/Volumes/KINGSTON/Udemy/Section 1/output/convars.txt")
+##  Set the graphics device to plot two figures in a 1 row by 2 column configuration#
+par(mfrow=c(1,2))#
+##  Create histogram of dependent variable (the difference measure)#
+hist(lifedata$diff, xlab="Difference Measure", main=NA, col="skyblue")#
+##  Add a one dimensional representation of the data along the x axis#
+rug(lifedata$diff)#
+##  Draw a bounding box around the histogram plot#
+box()#
+##  Create a box plot of the dependent variable#
+boxplot(lifedata$diff, ylab="Difference Measure", main=NA, col="skyblue")#
+##  Restore the graphics device to single plot configuration#
+par(mfrow=c(1,1))#
+##  Add a title to the plot#
+title(main="Difference Measure")#
+##  Create a data frame with dependent variable summary statistics#
+diff <- data.frame(n=length(lifedata$diff), min=min(lifedata$diff), #
+        max=max(lifedata$diff), mean=mean(lifedata$diff), #
+        median=median(lifedata$diff), var=var(lifedata$diff), #
+        sd=sd(lifedata$diff))#
+##  Print the data frame, rounded to three digits #
+print("Diff")#
+print(diff, digits=3)#
+##########################################################################
+##  Let's test your coding skills a little!#
+##  Create a histogram, boxplot, and statistical summary for the age independent variable#
+##  HINT:  This should be very similar to the code above for the diff variable#
+##########################################################################
+##  Repeat above for age independent variable#
+par(mfrow=c(1,2))#
+hist(lifedata$age, xlab="Age(in Months)", main=NA, #
+        col="salmon")#
+rug(lifedata$age)#
+box()#
+boxplot(lifedata$age, ylab="Age(in Months)", main=NA, #
+        col="salmon")#
+par(mfrow=c(1,1))#
+title(main="Participant Age")#
+age <- data.frame(n=length(lifedata$age), min=min(lifedata$age), #
+        max=max(lifedata$age), mean=mean(lifedata$age), #
+        median=median(lifedata$age), var=var(lifedata$age), #
+        sd=sd(lifedata$age))#
+print("Age")#
+print(age, digits=3)#
+##  Stop the sink and close the graphics device#
+sink()
+library(ggplot2)#
+#
+library(forecast)#
+#
+############################################################
+##  Set working directory#
+##  Load data#
+##  Create time series#
+############################################################
+#
+##  These data are included in R and so can be loaded using data()#
+data("AirPassengers")#
+AP <- AirPassengers#
+#
+png("/Volumes/KINGSTON/Udemy/Section 2/Part 2/Exercise/AP_ts.png",4000,4000,res=600)#
+plot(AP)#
+dev.off()
+png("/Volumes/KINGSTON/Udemy/Section 2/Exercise/AP_ts.png",4000,4000,res=600)#
+plot(AP)#
+dev.off()
+str(AP)
+ng("/Volumes/KINGSTON/Udemy/Section 2/Exercise/AP_ts.png",4000,4000,res=600)#
+plot(AP, ylab = "International Air Passengers (1000s)")#
+dev.off()
+png("/Volumes/KINGSTON/Udemy/Section 2/Exercise/AP_ts.png",4000,4000,res=600)#
+plot(AP, ylab = "International Air Passengers (1000s)")#
+dev.off()
+2+2
+###########
+## Install or load required packages:#
+#
+##	The "foreign" library is required for the read/write of files#
+##		like DBF, CSV and Excel:#
+library(foreign)#
+#
+##	The "ape" package provides us with several spatial statistics#
+##		tools, including Moran.I, useful for testing for spatial#
+##		autocorrelation in regression residuals:#
+#install.packages("ape")         #
+library(ape)#
+#
+##	The "pgirmess" library gives us corellogram functions, useful#
+##		for looking at spatial autocorrelation over various enforced#
+##		distances:#
+#install.packages("pgirmess")#
+library(pgirmess)#
+#
+##	The "sp" library is critical for loading and manipulating a#
+##		variety of spatial data formats:#
+#install.packages("sp")#
+library(sp)#
+#
+##	The "lattice" package gives us access to several advanced plot#
+##		styles and visualization techniques:#
+library(lattice)#
+#
+##	The "rgdal" package gives us access to spatial tools for reading, #
+##		writing, and projecting spatial data including shapefiles:#
+library(rgdal)#
+#
+###########
+###########
+##	Load and prepare required data:#
+#
+##	Change the working directory to the folder where we know our#
+##		data of interest to be located and where we want output #
+##		to be saved by default:#
+setwd("/Volumes/KINGSTON/R Class/IntroR /Lab 1 - Setting and Testing an R Programming Environment/data")#
+## Read in sample shapefile.shp ArcGIS shapefile,#
+##		look at structure, and plot#
+sample <- readOGR(dsn=".", layer="sample")

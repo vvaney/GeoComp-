@@ -1,0 +1,811 @@
+## Labeling#
+text(x=all_data$x, y=all_data$y, labels=all_data$station_id, cex=0.6, pos=4)#
+## Editing X and Y data #
+all_data$x <- edit(all_data$x)#
+all_data$y <- edit(all_data$y)
+## Assigning and pulling said values#
+all_data$x[is.na(all_data$x)] <- 5#
+## Double checking for X#
+all_data[is.na(all_data$x) | is.na(all_data$y),]
+all_data$y[is.na(all_data$y)] <- 1
+all_data[is.na(all_data$x) | is.na(all_data$y),]
+## Removing CSV #
+ls()#
+rm(growth)#
+rm(nitrogen)#
+ls()
+## Attaching all data and using columns#
+attach(all_data)#
+growth[1:10]
+## Detaching and Attaching ALLDATA#
+detach(all_data)#
+rm(station_id)#
+attach(all_data)
+plot(x=timestamp, y=growth)
+## New timestamp as character#
+new_timestamp <- as.character(all_data$timestamp)#
+head(new_timestamp)#
+new_timestamp <- as.POSIXct(new_timestamp, format="%m/%d/%Y %H:%M", tz="GMT")
+## New Timestamp#
+head(new_timestamp)#
+class(new_timestamp)
+plot(x=new_timestamp, y=growth)
+plot(x=as.factor(new_timestamp), y=growth)
+library(lctools)#
+library(sp)
+coords <- cbind(all_data$x, all_data$y)#
+alldata_spdf <- SpatialPointsDataFrame( coords=coords, data=all_data)
+lastob <- alldata_spdf[alldata_spdf$timestamp==alldata_spdf$timestamp[2400],]
+## Visulize Nitrogen#
+lm.palette <- colorRampPalette(c("green", "yellow", "orange", "red"), space = "rgb")
+spplot(lastob, zcol="nitrogen", col.regions=lm.palette(5), main= "Dissolved Organic Nitrogen")
+## Calculating Moran's I#
+lmoran <- l.moransI(coords, 8, lastob$growth)
+## Cluster values #
+lastob$lmorancluster <- lmoran$Cluster
+spplot(lastob, zcol="lmorancluster", col.regions=c("grey", "red", "blue", "green", "orange"), main="Local Moran's I Clusters", cuts=c(0,1,2,3,4,5))
+rowth <- read.csv("growth.csv")#
+nitrogen <- read.csv("nitrogen.csv")#
+station_id <- read.csv("station_id.csv")#
+#look at structure of growth#
+head(growth)#
+class(growth)#
+str(growth)  #
+summary(growth) #
+#str() gives summary of data and more or less combines info of head() and class()#
+#summary() provides summary that includes min, max, mean, quartiles, etc.#
+#look at structure of other two files#
+head(nitrogen)#
+class(nitrogen)#
+str(nitrogen)  #
+summary(nitrogen)#
+head(station_id)#
+class(station_id)#
+str(station_id)  #
+summary(station_id)#
+#try to combine data with cbind()#
+cbind(1:10, 21:30) #binds columns together so that 1:10 is one column and 21:30 is the second column#
+rbind(1:5, 9:13) #binds rows together the same as cbind()#
+cbind(1:3, 1:8)#
+  #can't bind columns of unequal length so 1:3 can't match with 1:8 and you get a warning message#
+  #column with 1:3 gets repeated until it matches the longer column
+growth[1:50,]#
+nitrogen[1:50,]
+all_data <- merge(growth, nitrogen, by = c("station_id", "timestamp")) #use c() to merge by station_id AND timestamp#
+#merge all_data that has growth and nitrogen with the station_id file#
+all_data <- merge(all_data, station_id, by = c("station_id"))#
+summary(all_data) #to see if it did what I wanted it to
+growth <- read.csv("growth.csv")#
+nitrogen <- read.csv("nitrogen.csv")#
+station_id <- read.csv("station_id.csv")
+head(growth)
+growth[1:50,]
+nitrogen[1:50,]
+all_data <- merge(growth, nitrogen, by = c("station_id", "timestamp")) #use c() to merge by station_id AND timestamp
+all_data <- merge(all_data, station_id, by = c("station_id"))
+summary(all_data) #to see if it did what I wanted it to
+all_data[is.na(all_data$x) | is.na(all_data$y),]
+plot(all_data$x, all_data$y)
+text(all_data$x, all_data$y, labels = all_data$station_id,
+all_data$x[is.na(all_data$x)] <- 5
+)
+text(all_data$x, all_data$y, labels = all_data$station_id,#
+     cex = 0.6, pos = 4)
+all_data$x[is.na(all_data$x)] <- 5#
+all_data$y[is.na(all_data$y)] <- 1
+plot(all_data$x, all_data$y)
+summary(all_data)
+ls() #list objects#
+rm(growth)#
+rm(nitrogen)#
+rm(a, b, c) #test to see if I can remove more than one data frame at the same time#
+  #it worked#
+ls()
+#attach all_data#
+attach(all_data)#
+  #warning given: object masked by station_id#
+growth[1:10]
+detach(all_data)#
+rm(station_id)#
+attach(all_data)
+plot(timestamp, growth)
+#fix timestamp by changing the timestamp format#
+new_timestamp <- as.character(all_data$timestamp)#
+head(new_timestamp)#
+new_timestamp <- as.POSIXct(new_timestamp, format="%m/%d/%Y %H:%M", tz="GMT")
+plot(new_timestamp, growth)
+all_data$timestamp = new_timestamp#
+pairs(all_data) #compares all the variables
+coords <- cbind(all_data$x, all_data$y)#
+alldata_spdf <- SpatialPointsDataFrame(coords = coords, data=all_data)#
+#select just the last timestamp#
+lastob <- alldata_spdf[alldata_spdf$timestamp==alldata_spdf$timestamp[2400],]#
+#visualize nitrogen#
+#create palette#
+lm.palette <- colorRampPalette(c("green", "yellow", "orange", "red"), space = "rgb")#
+#plot nitrogen with palette#
+spplot(lastob, zcol="nitrogen", col.regions=lm.palette(5), main="Dissolved Organic Nitrogen")
+#calculate Moran's I#
+lmoran <- l.moransI(coords, 8, lastob$growth)#
+#create object to look only at clusters#
+lastob$lmorancluster <- lmoran$Cluster#
+#plot clusters#
+spplot(lastob, zcol="lmorancluster", col.regions=c("grey", "red", "blue", "green", "orange"), #
+       main="Local Moran's I Clusters", cuts=c(0,1,2,3,4,5))
+growth<-read.csv('growth.csv')#
+nitrogen<-read.csv('nitrogen.csv')#
+station_id<-read.csv('station_id.csv')#
+#examining structure and content#
+head(growth)#
+class(growth) #dataframe#
+str(growth)#
+summary(growth)#
+#testing out binding functions#
+cbind( 1:10, 21:30) #bind by column#
+rbind( 1:5, 9:13) #bind by row#
+cbind(1:3, 1:8) #won't work, columns don't contain same number of rows#
+#looking further into the data#
+growth[1:50,]#
+nitrogen[1:50,]#
+#data is not organized correctly to bind dataframes using cbind#
+#using merge function instead#
+all_data<-merge(growth, nitrogen, by = c("station_id","timestamp")) #nitrogen and growth#
+all_data<-merge(all_data, station_id, by = c("station_id")) #adding station coords
+summary(all_data)#
+#looks okay, some rows missing coords#
+all_data[is.na(all_data$x) | is.na(all_data$y),]
+plot(x=all_data$x, y=all_data$y)#
+text(x=all_data$x, y=all_data$y, labels=all_data$station_id, cex=0.6, pos=4) #labeling stations
+all_data$x[is.na(all_data$x)] <- 5
+all_data[is.na(all_data$x) | is.na(all_data$y),]#
+#looks good, time to edit y data#
+all_data$y[is.na(all_data$y)] <- 1#
+#checking output#
+summary(all_data)
+plot(x=all_data$x, y=all_data$y)#
+text(x=all_data$x, y=all_data$y, labels=all_data$station_id, cex=0.6, pos=4)
+rm(growth,nitrogen)#
+  ls()#
+attach(all_data) #need to remove station_id first#
+  #remove all_data#
+  detach(all_data)#
+  rm(station_id)#
+attach(all_data) #data attached correctly now
+plot(x=timestamp, y=growth) #obvious mismatch observed
+new_timestamp <- as.character(all_data$timestamp)#
+head(new_timestamp)#
+new_timestamp <- as.POSIXct(new_timestamp, format="%m/%d/%Y %H:%M", tz="GMT")
+plot(x=new_timestamp, y=growth)
+plot(x=as.factor(new_timestamp), y=growth) #boxplots
+all_data$timestamp = new_timestamp
+pairs(all_data)
+coords <- cbind(all_data$x, all_data$y)#
+#creating a spatial df of coords#
+alldata_spdf <- SpatialPointsDataFrame( coords=coords, data=all_data)#
+#selecting last timestamp#
+lastob <- alldata_spdf[alldata_spdf$timestamp==alldata_spdf$timestamp[2400],]
+lm.palette <- colorRampPalette(c("green", "yellow", "orange", "red"), space = "rgb")#
+spplot(lastob, zcol="nitrogen", col.regions=lm.palette(5), main="Dissolved Organic Nitrogen")#
+#calculating local Moran's I on the data#
+lmoran <- l.moransI(coords, 8, lastob$growth)#
+#plotting clusters#
+lastob$lmorancluster <- lmoran$Cluster#
+spplot(lastob, zcol="lmorancluster", col.regions=c("grey", "red", "blue", "green", "orange"), #
+       main="Local Moran's I Clusters", cuts=c(0,1,2,3,4,5))
+growth<- read.csv("growth.csv", header = TRUE)#
+nitrogen <- read.csv("nitrogen.csv", header = TRUE)#
+station_id <- read.csv("station_id.csv", header = TRUE)
+all_data <- merge(growth, nitrogen, by = c("station_id", "timestamp"))#
+head(alldata)#
+#
+#Merge station_id to all data to attach x/y coordinates#
+#This will output final dataset with all 3 dataframes merged together.#
+#
+all_data <- merge(all_data, station_id, by = c("station_id"))
+summary(all_data)
+all_data[is.na(all_data$x) | is.na(all_data$y),]
+plot(x=all_data$x, y=all_data$y)
+text(x=all_data$x, y=all_data$y, labels=all_data$station_id, cex=0.6, pos=4)
+all_data$x[is.na(all_data$x)] <- 5
+all_data[is.na(all_data$x) | is.na(all_data$y),]
+all_data$y[is.na(all_data$y)] <- 1
+plot(x=all_data$x, y=all_data$y)#
+text(x=all_data$x, y=all_data$y, labels=all_data$station_id, cex=0.6, pos=4)
+ls()#
+rm(growth)#
+rm(nitrogen)#
+ls()#
+#
+#Attach the all_data to the data.frame#
+#
+attach(all_data)#
+growth[1:10]#
+#
+detach(all_data)#
+rm(station_id)#
+attach(all_data)#
+#
+attach(all_data)#
+growth[1:10]
+plot(x=timestamp, y=growth)
+new_timestamp <- as.character(all_data$timestamp)#
+head(new_timestamp)#
+new_timestamp <- as.POSIXct(new_timestamp, format="%m/%d/%Y %H:%M", tz="GMT")
+plot(x=new_timestamp, y=growth)
+plot(x=as.factor(new_timestamp), y=growth)
+all_data$timestamp = new_timestamp
+pairs(all_data)
+coords <- cbind(all_data$x, all_data$y)#
+alldata_spdf <- SpatialPointsDataFrame( coords=coords, data=all_data)#
+#
+#Select last time stamp#
+#
+lastob <- alldata_spdf[alldata_spdf$timestamp==alldata_spdf$timestamp[2400],]#
+#
+#Visualize nitrogen in last timestamp#
+#
+lm.palette <- colorRampPalette(c("green", "yellow", "orange", "red"), space = "rgb")#
+#
+#Plot organic nitrogen#
+#
+spplot(lastob, zcol="nitrogen", col.regions=lm.palette(5), main="Dissolved Organic Nitrogen")
+lmoran <- l.moransI(coords, 8, lastob$growth)#
+#
+#Extract and plot clusters#
+#
+lastob$lmorancluster <- lmoran$Cluster#
+#
+spplot(lastob, zcol="lmorancluster", col.regions=c("grey", "red", "blue", "green", "orange"), main="Local Moran’s I Clusters", cuts=c(0,1,2,3,4,5))
+growth<-read.csv("growth.csv")#
+nitrogen <- read.csv("nitrogen.csv")#
+station_id <- read.csv("station_id.csv")
+all_data<-merge (growth,nitrogen, by=c("timestamp","station_id"))#
+##attach X/Y locations to our data based on station_id#
+all_data <- merge(all_data, station_id, by=c("station_id"))#
+##check results with summary#
+summary(all_data)
+all_data[is.na(all_data$x) | is.na(all_data$y),]
+plot(x=all_data$x, y=all_data$y)
+text(x=all_data$x, y=all_data$y, labels=all_data$station_id, cex=0.6, pos=4)
+all_data$x[is.na(all_data$x)]<- 5#
+##check that we now have the value 5 in the x column where there used to be NAs#
+all_data[is.na(all_data$x) | is.na(all_data$y),]#
+##edit the values at location 5,1 so that y is 1#
+all_data$y[is.na(all_data$y)] <- 1#
+##plot points to check results#
+plot(x=all_data$x, y=all_data$y)
+##label points to check results#
+text(x=all_data$x, y=all_data$y, labels=all_data$station_id, cex=0.6, pos=4)
+ls()#
+rm(growth)#
+rm(nitrogen)#
+ls()
+attach(all_data)#
+growth[1:10]
+detach(all_data)#
+rm(station_id)#
+attach(all_data)
+plot(x=timestamp, y=growth)
+new_timestamp <- as.character(all_data$timestamp)#
+head(new_timestamp)#
+new_timestamp <- as.POSIXct(new_timestamp, format="%m/%d/%Y %H:%M", tz="GMT")#
+##check new timestamp#
+head(new_timestamp)#
+class(new_timestamp)
+plot(x=new_timestamp, y=growth)
+plot(x=as.factor(new_timestamp), y=growth)#
+##replace the timestamp in our data.frame #
+all_data$timestamp = new_timestamp
+pairs(all_data)
+coords <- cbind(all_data$x, all_data$y)#
+alldata_spdf<-SpatialPointsDataFrame(coords=coords, data=all_data)#
+##select the last time stamp#
+lastob<-#
+alldata_spdf[alldata_spdf$timestamp==alldata_spdf$timestamp[2400],]#
+##make a visualization of the nitrogen in the last time stamp#
+lm.palette <- colorRampPalette(c("green", "yellow", "orange", "red"), space = "rgb")#
+spplot(lastob, zcol="nitrogen", col.regions=lm.palette(5), main="Dissolved Organic Nitrogen")
+lmoran <- l.moransI(coords, 8, lastob$growth)
+lastob$lmorancluster<-lmoran$Cluster
+##plot the extracted clusters#
+spplot(lastob, zcol="lmorancluster", col.regions=c("grey", "red", "blue", "green", "orange"), main="Local Moran's I Clusters", cuts=c(0,1,2,3,4,5))
+growth <- read.csv("growth.csv")#
+nitrogen <- read.csv("nitrogen.csv")#
+station_id <-read.csv("station_id.csv")
+all_data <- merge(growth,nitrogen, by=c("station_id", "timestamp"))#
+#
+#creating X/Y locations to our data#
+# using the merge comand to merge the all_data and the staion_id data frames together and storing it as all_data#
+all_data <- merge(all_data, station_id, by=c("station_id"))#
+#
+#running a summary of all_data #
+summary(all_data)
+all_data[is.na(all_data$x) | is.na(all_data$y),]
+plot(x=all_data$x, y=all_data$y)
+text(x=all_data$x, y=all_data$y, labels=all_data$station_id, cex=0.6, pos=4)#
+#
+#edit the data to elimite the NA's#
+all_data$x[is.na(all_data$x)] <- 5#
+#
+#checking to see if the value 5 is in the x column where there used to be NAs (it is!)#
+all_data[is.na(all_data$x) | is.na(all_data$y),]#
+#
+#filling in the NA's for y #
+all_data$y[is.na(all_data$y)] <- 1#
+#
+#confirming that there are no missing data points (all good)#
+summary(all_data)
+#reploting points and lables#
+plot(x=all_data$x, y=all_data$y)#
+text(x=all_data$x, y=all_data$y, labels=all_data$station_id, cex=0.6, pos=4)
+#remove growth and nitrogen from the data frame#
+ls()#
+rm(growth)#
+rm(nitrogen)#
+ls()#
+#
+#attach the all_data data.frame #
+attach(all_data)#
+growth[1:10]#
+#
+#fixing the masked id#
+detach(all_data)#
+rm(station_id)#
+attach(all_data)#
+#
+#use column names in the code #
+plot(x=timestamp, y=growth)
+#convert the timestamp column to a character #
+new_timestamp <- as.character(all_data$timestamp)#
+head(new_timestamp)#
+new_timestamp <- as.POSIXct(new_timestamp, format="%m/%d/%Y %H:%M", tz="GMT")#
+#
+#checking the timestamp #
+head(new_timestamp)#
+class(new_timestamp)
+plot(x=new_timestamp, y=growth)
+#replace the timestat - make a final plot comapring the variables in a paris plot#
+all_data$timestamp = new_timestamp#
+pairs(all_data)
+coords <- cbind(all_data$x, all_data$y)#
+alldata_spdf <- SpatialPointsDataFrame( coords=coords, data=all_data)#
+#
+#set the last timestamp #
+lastob <- alldata_spdf[alldata_spdf$timestamp==alldata_spdf$timestamp[2400],]#
+#
+#create stamped observations #
+lm.palette <- colorRampPalette(c("green", "yellow", "orange", "red"), space = "rgb")#
+#
+spplot(lastob, zcol="nitrogen", col.regions=lm.palette(5), main="Dissolved Organic Nitrogen")
+#calculate the local moran's i#
+lmoran <- l.moransI(coords, 8, lastob$growth)#
+#
+#extract clusters and plot#
+lastob$lmorancluster <- lmoran$Cluster#
+#
+spplot(lastob, zcol="lmorancluster", col.regions=c("grey", "red", "blue", "green", "orange"), main="Local Moran’s I Clusters", cuts=c(0,1,2,3,4,5))
+plot(x=as.factor(new_timestamp), y=growth)
+# Read in data from csv files#
+growth <- read.csv("growth.csv", header=TRUE)  #header=TRUE is default argument for this function#
+nitrogen <- read.csv("nitrogen.csv")#
+station_id <- read.csv("station_id.csv")
+# Combine growth and nitrogen datasets using both "station_id" and "timestamp" columns to match up values#
+all_data <- merge(growth, nitrogen, by=c("station_id","timestamp"))
+View(all_data) # View newly combined data in new window
+all_data <- merge(all_data, station_id, by=c("station_id"))
+summary(all_data) # View summary data of all_data
+all_data[is.na(all_data$x)|is.na(all_data$y),] # functions on left side of comma indicate we are selecting rows (looks in ALL columns). "|" operator indicates "OR"
+plot(x=all_data$x, y=all_data$y)
+text(x=all_data$x, y=all_data$y, labels=all_data$station_id, cex=0.6, pos = 4) #cex indicates font size; pos indicates posi
+all_data$x[is.na(all_data$x)] <- 5 #selects all NA rows in X column of all_data and assigns a value of 5
+all_data[is.na(all_data$x)|is.na(all_data$y),]
+all_data$y[is.na(all_data$y)] <- 1 #selects all NA rows in y column of all_data and assigns a value of 1
+plot(x=all_data$x, y=all_data$y)
+text(x=all_data$x, y=all_data$y, labels=all_data$station_id, cex=0.6, pos = 4)
+summary(all_data)
+ls()#
+# remove data.frames growth and nitrogen:#
+rm(growth)#
+rm(nitrogen)#
+# list all objects in the R environment to see that growth and nitrogen have been removed#
+ls()#
+# NOW we can turn column names in all_data into callable variables#
+attach(all_data)#
+growth[1:10] # example of how I can now call the first 10 values from the growth column just by typing growth
+detach(all_data)#
+# remove station_id from R environment#
+rm(station_id)#
+# use attach function again to turn column headers into variables that R recogizes#
+attach(all_data)
+plot(x=timestamp, y=growth) # since we used attach(), now we can plot using variable names directly, and don't need to use all_data$...
+new_timestamp <- as.character(timestamp) #convert timestamp column in all_data to character class
+new_timestamp <- as.POSIXct(new_timestamp, format="%m/%d/%Y %H:%M", tz="GMT") #tell R format of date/time data, indicate timezone as GMT#
+h
+new_timestamp <- as.POSIXct(new_timestamp, format="%m/%d/%Y %H:%M", tz="GMT")
+plot(new_timestamp,growth) # x= and y= don't seem to be necessary for plot()
+plot(as.factor(new_timestamp),growth)
+all_data$timestamp <- new_timestamp  # all_data$timestamp is necessary here; just writing timestamp to call the column does not work
+pairs(all_data) # creates plot with all variables compared to eachother
+library(lctools)
+coords <- cbind(all_data$x,all_data$y)
+alldata_spdf <- SpatialPointsDataFrame(coords=coords, data=all_data)
+lastob <- alldata_spdf[alldata_spdf$timestamp==alldata_spdf$timestamp[2400],]
+lm.palette <- colorRampPalette(c("green", "yellow", "orange", "red"), space = "rgb")
+spplot(lastob, zcol="nitrogen", col.regions=lm.palette(5), main="Dissolved Organic Nitrogen") # color palette split into 5 steps
+# Calculate local Moran's I:#
+lmoran <- l.moransI(coords, 8, lastob$growth) # number of nearest neighbors is 8
+lastob$lmorancluster <- lmoran$Cluster # put "Cluster" column from lmoran data.frame into lastob data.frame
+# spatial plot of local Moran's I clusters#
+spplot(lastob, zcol="lmorancluster", col.regions=c("grey", "red", "blue", "green", "orange"), main="Local Moran's I Clusters",#
+       cuts=c(0,1,2,3,4,5))
+## Loading the Files ###
+growth <- read.csv("growth.csv")#
+nitrogen <- read.csv("nitrogen.csv")#
+station_id <- read.csv("station_id.csv")
+all_data <- merge(growth, nitrogen, by=c("station_id", "timestamp"))#
+## Merging the Station_id file to the other two files ###
+all_data <- merge(all_data, station_id, by=c("station_id"))#
+## Checking for any missing data ###
+summary(all_data)
+all_data[is.na(all_data$x) | is.na(all_data$y), ]
+plot(x=all_data$x, y=all_data$y)#
+text(x=all_data$x, y=all_data$y, labels=all_data$station_id, cex=0.6, pos=4)
+## The corrected value is assigned to the missing data ###
+all_data$x[is.na(all_data$x)] <- 5#
+all_data$y[is.na(all_data$y)] <- 1#
+## Plotting the stations again to observe changes ###
+plot(x=all_data$x, y=all_data$y)#
+text(x=all_data$x, y=all_data$y, labels=all_data$station_id, cex=0.6, pos=4)
+rm(growth, nitrogen, station_id)#
+## Attatching the column headers to variables ###
+attach(all_data)#
+## Ensuring the attachment worked ###
+plot(x=timestamp, y=growth)
+## Converting timestamps to POSIX data ###
+new_timestamp <- as.character(all_data$timestamp)#
+head(new_timestamp)#
+new_timestamp <- as.POSIXct(new_timestamp, format="%m/%d/%Y %H: %M", tz="GMT")#
+## Examining the new data ###
+head(new_timestamp)#
+plot(x=new_timestamp, y=growth)#
+## Replacing the old timestamp with the new timestamp ###
+all_data$timestamp = new_timestamp#
+pairs(all_data)
+coords <- cbind(all_data$x, all_data$y)#
+alldata_spdf <- SpatialPointsDataFrame(coords=coords, data = all_data)#
+## Selecting the last timestamp ###
+lastob <- alldata_spdf[alldata_spdf$timestamp==alldata_spdf$timestamp[2400], ]#
+## Creating a plot of nitrogen at the last timestamp ###
+lm.palette <- colorRampPalette(c("green", "yellow", "orange", "red"), space="rgb")#
+spplot(lastob, zcol="nitrogen", col.regions=lm.palette(5), main="Dissolved Organic Nitrogen")
+lmoran <- l.moransI(coords, 8, lastob$growth)#
+## Extracting and plotting the clusters ###
+lastob$lmorancluster <- lmoran$Cluster#
+spplot(lastob, zcol="lmorancluster", col.regions=c("grey", "red", "blue", "green", "orange"), main="Local Moran's I Clusters", cuts=c(0,1,2,3,4,5))
+growth.fn = 'growth.csv'#
+nitrogen.fn = 'nitrogen.csv'#
+station_id.fn = 'station_id.csv'
+growth.df = read.csv(growth.fn ,header=T)#
+nitrogen.df = read.csv(nitrogen.fn, header=T)#
+station_id.df = read.csv(station_id.fn, header=T)
+all_data = merge(growth.df, nitrogen.df, by=c('station_id', 'timestamp'))
+all_data = merge(all_data, station_id.df, by=c('station_id'))
+attach(all_data)#
+#
+# Plot the x and y variables from the all_data dataframe#
+plot(x=x, y=y)#
+#
+# Create a plot with each point labeled by their station_id's#
+text(x=x, y=y, labels=station_id, cex=0.6, pos=4)
+all_data$x[is.na(all_data$x)] <- 5#
+#
+# Visualize the data to see that column x's NA's were replaced with 5's#
+all_data[is.na(all_data$x) | is.na(all_data$y),]#
+#
+# Replace NA's in y with 1's#
+all_data$y[is.na(all_data$y)] <- 1
+summary(all_data)#
+#
+# Replot after fixing NA problem#
+# Reattach data#
+attach(all_data)#
+#
+# Plot the x and y variables from the all_data dataframe#
+plot(x=x, y=y)
+# Create a plot with each point labeled by their station_id's#
+text(x=x, y=y, labels=station_id, cex=0.6, pos=4)
+# List the data, remove some then relist it#
+ls()#
+rm(growth.df)#
+rm(nitrogen.df)#
+ls()#
+#
+# Reattach dataframe#
+attach(all_data)#
+growth[1:10]
+# Resolve warning by deattaching, remove station_id dataframe, and reattach all_data#
+detach(all_data)#
+rm(station_id.df)#
+attach(all_data)#
+#
+# Plot x and y once again, now using their names#
+plot(x=timestamp, y=growth)
+# Convert timestamps#
+new_timestamp <- as.character(all_data$timestamp)#
+head(new_timestamp)#
+new_timestamp <- as.POSIXct(new_timestamp, format="%m/%d/%Y %H:%M", tz="GMT")
+# Replot after altering the timestamps#
+plot(x=new_timestamp, y=growth)#
+#
+# Replot using factors again#
+plot(x=as.factor(new_timestamp), y=growth)
+# Set all_data's timestamp column equal to the new timestamp's#
+# created. Then, create a pairs plot#
+all_data$timestamp = new_timestamp#
+pairs(all_data)
+coords <- cbind(all_data$x, all_data$y)#
+#
+# From new matrix, coords, create spatial points data frame#
+alldata_spdf <- SpatialPointsDataFrame( coords=coords, data=all_data)
+# Select last timestep#
+lastob <- alldata_spdf[alldata_spdf$timestamp==alldata_spdf$timestamp[2400],]
+# Generate color pallet for nitrogen plot#
+lm.palette <- colorRampPalette(c("green", "yellow", "orange", "red"), space = "rgb")
+# create spatial plot of last time stamp with nitrogen as the z value#
+spplot(lastob, zcol="nitrogen", col.regions=lm.palette(5), main="Dissolved Organic Nitrogen")#
+#
+# Calculate a local moran's I#
+lmoran <- l.moransI(coords, 8, lastob$growth)
+# Create a column in the lastob dataframe, lmorancluster, that will be used#
+# to plot the LL, LH, HH, HL plot of the local Moran I result#
+lastob$lmorancluster <- lmoran$Cluster#
+#
+# LL, LH, HH, HL local Moran I result#
+spplot(lastob, zcol="lmorancluster", col.regions=c("grey", "red", "blue", "green", "orange"), #
+       main="Local Moran’s I Clusters", cuts=c(0,1,2,3,4,5))
+# Read in csv. files  #
+# header=TRUE is default, you are telling R your data columns have a title#
+# header=FALSE, you are telling R that your data columns start with datapoints#
+#
+growth<-read.csv("growth.csv")#
+nitrogen<-read.csv("nitrogen.csv")#
+station_id<-read.csv("station_id.csv")
+# Create an "all_data" dataframe, which should pop up in the global environment #
+all_data<-merge(growth,nitrogen, by=c("station_id","timestamp"))#
+# Merge all data in the same all_data object#
+all_data<-merge(all_data,station_id. by=c("station_id"))
+all_data<-merge(growth,nitrogen, by=c("station_id","timestamp"))#
+# Merge all data in the same all_data object#
+all_data<-merge(all_data,station_id, by=c("station_id"))
+# Check for errors in the dataset #
+#Check for values that are Not Available or Missing#
+all_data[is.na(all_data$x)| is.na(all_data$y),]#
+#
+#Plot the data to find the missing value#
+plot(x=all_data$x,y+all_data$y)#
+#
+# Label the missing value#
+text(x=all_data$x,y=all_data$y,labels=all_data$station_id,cex=0.6,pos=4)
+plot(x=all_data$x,y=all_data$y)
+# Label the missing value#
+text(x=all_data$x,y=all_data$y,labels=all_data$station_id,cex=0.6,pos=4)
+all_data$x[is.na(all_data$x)] <-5#
+all_data$y[is.na(all_data$y)] <-1
+plot(x=all_data$x,y=all_data$y)
+ls()#
+rm(growth)#
+rm(nitrogen)#
+ls()#
+#
+# If you have a masked object you will have to detach, remove and attach#
+detach(all_data)#
+rm(staion_id)#
+attach(all_data)
+new_timestamp< as.character(all_data$timestamp)#
+head(new_timestamp)#
+new_timestamp <- as.POSIXct(new_timestamp, format="%m/%d/%Y %H:%M",tz="GMT")
+all_data$timestamp
+growth<-read.csv("growth.csv")#
+nitrogen<-read.csv("nitrogen.csv")#
+station_id<-read.csv("station_id.csv")#
+#
+# Looking at the structure of the files and data#
+#
+head(growth)#
+class(growth)#
+str(growth)#
+summary(growth)
+all_data<-merge(growth,nitrogen, by=c("station_id","timestamp"))#
+# Merge all data in the same all_data object#
+all_data<-merge(all_data,station_id, by=c("station_id"))
+all_data[is.na(all_data$x)| is.na(all_data$y),]#
+#
+#Plot the data to find the missing value#
+plot(x=all_data$x,y=all_data$y)
+# Label the missing value#
+text(x=all_data$x,y=all_data$y,labels=all_data$station_id,cex=0.6,pos=4)
+all_data$x[is.na(all_data$x)] <-5#
+all_data$y[is.na(all_data$y)] <-1#
+#
+#Replot data to check you have fixed the missing value#
+plot(x=all_data$x,y=all_data$y)
+#Remove dataframes that are no longer needed#
+ls()#
+rm(growth)#
+rm(nitrogen)#
+ls()#
+#
+# If you have a masked object you will have to detach, remove and attach#
+detach(all_data)#
+rm(staion_id)#
+attach(all_data)#
+#
+#Change our timestamps from a factor to a character using the POSIXct() function#
+new_timestamp< as.character(all_data$timestamp)
+new_timestamp<- as.character(all_data$timestamp)
+new_timestamp <- as.POSIXct(new_timestamp, format="%m/%d/%Y %H:%M",tz="GMT")
+plot(x=new_timestamp,y=growth)
+plot(x=as.factor(new_timestamp), y=growth)
+#Create a spatial object by combining the data coordinates#
+ coords<- cbind(all_data$x,all_data$y)#
+ alldata_spdf<-SpatialGridDataFrame(coords=coords,data=all_data)
+alldata_spdf<-SpatialPointsDataFrame(coords=coords,data=all_data)
+lastob <-alldata_spdf(alldata_spdf$timestamp==alldata_spdf$timestamp[2400],)
+lastob <-alldata_spdf[alldata_spdf$timestamp==alldata_spdf$timestamp[2400],]
+im.palette<-colorRampPalette(c("green","yellow","orange","red"), space="rgb")
+# Plot Method for spatial data with attributes#
+ spplot(lastob, zcol="nitrogen", col.regions=im.palette (5), main="Dissolved Organic Nitrogen")
+lmoran<- l.moransI(coords, 8, lastob$growth)
+#Extract clusters and plot#
+ lastob$lmorancluster <-lmoran$Cluster#
+ spplot(lastob, zcol="lmorancluster", col.region=c("grey", "red", "blue","green", "orange"), main= "Local Moran's I CLusters", cuts=c(0,1,2,3,4,5)
+)
+growth<-read.csv("growth.csv")#
+nitrogen<-read.csv("nitrogen.csv")#
+station_id<-read.csv("station_id.csv")
+all_data<-merge(growth,nitrogen, by=c("station_id","timestamp"))#
+# Merge all data in the same all_data object#
+all_data<-merge(all_data,station_id, by=c("station_id"))
+all_data[is.na(all_data$x)| is.na(all_data$y),]
+plot(x=all_data$x,y=all_data$y)
+# Label the missing value#
+text(x=all_data$x,y=all_data$y,labels=all_data$station_id,cex=0.6,pos=4)
+all_data$x[is.na(all_data$x)] <-5#
+all_data$y[is.na(all_data$y)] <-1#
+#
+#Replot data to check you have fixed the missing value#
+plot(x=all_data$x,y=all_data$y)
+ls()#
+rm(growth)#
+rm(nitrogen)#
+ls()#
+#
+# Attach to all_data #
+attach(all_data)#
+growth[1:10]#
+#
+# If you have a masked object you will have to detach, remove and attach#
+detach(all_data)#
+rm(station_id)#
+attach(all_data)
+#Change our timestamps from a factor to a character using the POSIXct() function#
+new_timestamp<- as.character(all_data$timestamp)#
+head(new_timestamp)#
+new_timestamp <- as.POSIXct(new_timestamp, format="%m/%d/%Y %H:%M",tz="GMT")
+plot(x=new_timestamp,y=growth)
+plot(x=as.factor(new_timestamp), y=growth)#
+ pairs(all_data)
+#Create a spatial object by combining the data coordinates#
+ coords<- cbind(all_data$x,all_data$y)#
+ alldata_spdf<-SpatialPointsDataFrame(coords=coords,data=all_data)
+lastob <-alldata_spdf[alldata_spdf$timestamp==alldata_spdf$timestamp[2400],]
+im.palette<-colorRampPalette(c("green","yellow","orange","red"), space="rgb")#
+ # Plot Method for spatial data with attributes#
+ spplot(lastob, zcol="nitrogen", col.regions=im.palette (5), main="Dissolved Organic Nitrogen")
+lmoran<- l.moransI(coords, 8, lastob$growth)#
+ #Extract clusters and plot#
+ lastob$lmorancluster <-lmoran$Cluster#
+ spplot(lastob,zcol="lmorancluster", col.regions=c("grey","red","blue","green","orange"), main="Local Moran's I Clusters", cuts=c(0,1,2,3,4,5))
+## Read in csv data files #
+growth <- read.csv("growth.csv")#
+nitrogen <- read.csv("nitrogen.csv")#
+station_id <- read.csv("station_id.csv")
+## Merge the growth and nitrogen dataframes#
+all_data <- merge(growth, nitrogen, by=c("station_id","timestamp"))#
+all_data <- merge(all_data, station_id, by=c("station_id"))
+## Pulling out any records where x or y is an NA:#
+all_data[is.na(all_data$x) | is.na(all_data$y),]#
+## plotting out the locations#
+plot(x=all_data$x, y=all_data$y)
+## Label each point with the station_id#
+text(x=all_data$x, y=all_data$y, labels=all_data$station_id, cex=0.6, pos=4)
+all_data$x[is.na(all_data$x)] <- 5#
+all_data[is.na(all_data$x) | is.na(all_data$y),]#
+all_data$y[is.na(all_data$y)] <- 1#
+summary(all_data)
+## Remove the data.frames#
+ls()#
+rm(growth)#
+rm(nitrogen)#
+ls()#
+## Attach the all_data data.frame and use those column names inside it directly#
+attach(all_data)#
+growth[1:10]#
+## Solve the warning problem#
+detach(all_data)#
+rm(station_id)#
+attach(all_data)
+plot(x=timestamp, y=growth)
+## Convert our timestamp column to a character#
+new_timestamp <- as.character(all_data$timestamp)
+## Convert the timestamp to POSIX timestamps#
+head(new_timestamp)#
+new_timestamp <- as.POSIXct(new_timestamp, format="%m/%d/%Y %H:%M", tz="GMT")
+## Examine the new timestamp:#
+head(new_timestamp)#
+class(new_timestamp)
+plot(x=new_timestamp, y=growth)
+## Draw a pairs plot#
+all_data$timestamp = new_timestamp#
+pairs(all_data)
+## Create a spatial object by combining the data coordinates with the rest of our dataset#
+coords <- cbind(all_data$x, all_data$y)#
+alldata_spdf <- SpatialPointsDataFrame( coords=coords, data=all_data)#
+## Select the last time stamp#
+lastob <- alldata_spdf[alldata_spdf$timestamp==alldata_spdf$timestamp[2400],]
+## Visualize nitrogen in the last time stamped observation#
+lm.palette <- colorRampPalette(c("green", "yellow", "orange", "red"), space = "rgb")#
+spplot(lastob, zcol="nitrogen", col.regions=lm.palette(5), main="Dissolved Organic Nitrogen")#
+## Calculate local moran¡¯s i:#
+lmoran <- l.moransI(coords, 8, lastob$growth)
+lastob$lmorancluster <- lmoran$Cluster#
+spplot(lastob, zcol="lmorancluster", col.regions=c("grey", "red", "blue", "green", "orange"), main="Local Moran¡¯s I Clusters", cuts=c(0,1,2,3,4,5))
+growth <- read.csv('growth.csv')   ##!!!never forget '.csv'#
+nitrogen <- read.csv('nitrogen.csv')#
+station_id <- read.csv('station_id.csv')#
+head(growth)  ##return the head six lines#
+class(growth)#
+str(growth)#
+summary(growth)
+all_data <- merge(growth, nitrogen, by=c('station_id','timestamp'))#
+all_data[1:5,]#
+all_data <- merge(all_data, station_id, by=c('station_id'))#
+all_data[1:5,]
+##pulling out any records where x or y is an NA#
+all_data[is.na(all_data$x) | is.na(all_data$y),]#
+plot(x=all_data$x, y=all_data$y)#
+##label each point with the station_id#
+text(x=all_data$x, y=all_data$y, labels=all_data$station_id, cex=0.6, pos=4)
+all_data$x[is.na(all_data$x)] <- 5 #Method3#
+all_data[is.na(all_data$x) | is.na(all_data$y),]  #records which columnX is 5,colunmn y is NA is shown#
+all_data$y[is.na(all_data$y)] <- 1#
+plot(x=all_data$x,y=all_data$y)#
+text(x=all_data$x,y=all_data$y,labels=all_data$station_id, cex=0.6, pos=4)#
+summary(all_data)
+ls()  ##list all variables in R#
+rm(growth,nitrogen,a,b,c)  ##delete varibles#
+ls()#
+##Now we can attach the all_data data.frame and use those column names inside it directly:#
+attach(all_data)  #attach all_data into memory#
+growth[1:10]#
+detach(all_data) #
+rm(station_id)#
+attach(all_data)#
+plot(x=timestamp, y=growth)
+new_timestamp <- as.character(all_data$timestamp)
+head(new_timestamp)
+new_timestamp <- as.POSIXct(new_timestamp, format="%m/%d/%Y %H:%M", tz="GMT") #don't use strptime()#
+head(new_timestamp)#
+class(new_timestamp)
+plot(x=new_timestamp, y=growth)
+# replace the timestamp by new_timestamp#
+all_data$timestamp = new_timestamp#
+pairs(all_data)
+coords <- cbind(x, y)#
+alldata_spdf <-SpatialPointsDataFrame ( coords=coords, data=all_data)
+lastob <- alldata_spdf[alldata_spdf$timestamp==alldata_spdf$timestamp[2400],]
+class(new_timestamp)
+head(new_timestamp)
+str(new_timestamp)
+summary(all_data)
+str(growth)
