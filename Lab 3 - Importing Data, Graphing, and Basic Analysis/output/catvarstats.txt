@@ -1,0 +1,98 @@
+$Female
+    Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+-52.9667  -9.0805  -0.1369  -0.5713  11.1524  28.0523 
+
+$Male
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+-45.439 -16.446  -5.767  -3.437  10.962  40.158 
+
+
+	Welch Two Sample t-test
+
+data:  response by eachvar
+t = 1.1653, df = 197.84, p-value = 0.2453
+alternative hypothesis: true difference in means between group Female and group Male is not equal to 0
+95 percent confidence interval:
+ -1.983784  7.714729
+sample estimates:
+mean in group Female   mean in group Male 
+          -0.5712967           -3.4367689 
+
+$`Not Married`
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+-45.439  -6.276   4.188   3.432  15.023  39.862 
+
+$Married
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+-52.967 -23.526 -12.590 -12.556  -3.602  40.158 
+
+
+	Welch Two Sample t-test
+
+data:  response by eachvar
+t = 6.6256, df = 125.07, p-value = 9.238e-10
+alternative hypothesis: true difference in means between group Not Married and group Married is not equal to 0
+95 percent confidence interval:
+ 11.21233 20.76390
+sample estimates:
+mean in group Not Married     mean in group Married 
+                 3.431927                -12.556190 
+
+$Unemployed
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+-44.058  -4.165   3.591   3.892  16.163  29.536 
+
+$Employed
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+-52.967 -15.843  -4.242  -3.866   8.945  40.158 
+
+
+	Welch Two Sample t-test
+
+data:  response by eachvar
+t = 2.7869, df = 81.342, p-value = 0.00662
+alternative hypothesis: true difference in means between group Unemployed and group Employed is not equal to 0
+95 percent confidence interval:
+  2.219809 13.297096
+sample estimates:
+mean in group Unemployed   mean in group Employed 
+                3.892391                -3.866061 
+
+$`No Family`
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+-15.795  -7.102   1.592   2.723  11.983  22.374 
+
+$`Have Family`
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+-52.967 -12.870  -1.739  -2.076  10.854  40.158 
+
+
+	Welch Two Sample t-test
+
+data:  response by eachvar
+t = 0.43228, df = 2.0509, p-value = 0.7068
+alternative hypothesis: true difference in means between group No Family and group Have Family is not equal to 0
+95 percent confidence interval:
+ -41.85208  51.45092
+sample estimates:
+  mean in group No Family mean in group Have Family 
+                 2.723394                 -2.076024 
+
+$HS
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+-29.737  -7.333   2.864   2.754  14.946  27.451 
+
+$UGrad
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+-52.967 -12.593  -1.462  -2.058  10.323  28.052 
+
+$Grad
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+-45.439 -19.267  -7.784  -6.148   7.381  40.158 
+
+[1] "ANOVA"
+             Df Sum Sq Mean Sq F value Pr(>F)  
+eachvar       2   2054  1027.2   3.476 0.0328 *
+Residuals   197  58219   295.5                 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1

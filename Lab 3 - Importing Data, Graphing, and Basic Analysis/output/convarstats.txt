@@ -1,0 +1,154 @@
+[1] "########## age ##########"
+
+	Pearson's product-moment correlation
+
+data:  response and eachvar
+t = -9.481, df = 198, p-value < 2.2e-16
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.6473349 -0.4553382
+sample estimates:
+       cor 
+-0.5587789 
+
+
+Call:
+lm(formula = response ~ eachvar)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-42.427  -7.983  -1.316   8.489  65.519 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 22.446812   2.774485   8.090 5.87e-14 ***
+eachvar     -0.064780   0.006833  -9.481  < 2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 14.47 on 198 degrees of freedom
+Multiple R-squared:  0.3122,	Adjusted R-squared:  0.3088 
+F-statistic: 89.89 on 1 and 198 DF,  p-value: < 2.2e-16
+
+[1] "########## bodytemp ##########"
+
+	Pearson's product-moment correlation
+
+data:  response and eachvar
+t = -0.8605, df = 198, p-value = 0.3906
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.19810216  0.07836587
+sample estimates:
+        cor 
+-0.06103879 
+
+
+Call:
+lm(formula = response ~ eachvar)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-51.587 -11.505   0.474  13.083  43.854 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)
+(Intercept)  81.4125    96.9478    0.84    0.402
+eachvar      -0.8579     0.9970   -0.86    0.391
+
+Residual standard error: 17.41 on 198 degrees of freedom
+Multiple R-squared:  0.003726,	Adjusted R-squared:  -0.001306 
+F-statistic: 0.7405 on 1 and 198 DF,  p-value: 0.3906
+
+[1] "########## heartrate ##########"
+
+	Pearson's product-moment correlation
+
+data:  response and eachvar
+t = 1.2882, df = 198, p-value = 0.1992
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.04818394  0.22703587
+sample estimates:
+       cor 
+0.09116653 
+
+
+Call:
+lm(formula = response ~ eachvar)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-50.392 -10.511  -0.177  13.218  42.507 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)
+(Intercept) -11.05460    7.13241  -1.550    0.123
+eachvar       0.11307    0.08777   1.288    0.199
+
+Residual standard error: 17.37 on 198 degrees of freedom
+Multiple R-squared:  0.008311,	Adjusted R-squared:  0.003303 
+F-statistic: 1.659 on 1 and 198 DF,  p-value: 0.1992
+
+[1] "########## support ##########"
+
+	Pearson's product-moment correlation
+
+data:  response and eachvar
+t = 1.4417, df = 198, p-value = 0.151
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.03734746  0.23730700
+sample estimates:
+      cor 
+0.1019217 
+
+
+Call:
+lm(formula = response ~ eachvar)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-50.914  -9.875   0.328  12.966  42.058 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)  
+(Intercept)  -9.1349     5.0962  -1.792   0.0746 .
+eachvar       0.7154     0.4962   1.442   0.1510  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 17.36 on 198 degrees of freedom
+Multiple R-squared:  0.01039,	Adjusted R-squared:  0.00539 
+F-statistic: 2.078 on 1 and 198 DF,  p-value: 0.151
+
+[1] "########## health ##########"
+
+	Pearson's product-moment correlation
+
+data:  response and eachvar
+t = -0.086176, df = 198, p-value = 0.9314
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.1447422  0.1327296
+sample estimates:
+         cor 
+-0.006124165 
+
+
+Call:
+lm(formula = response ~ eachvar)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-50.970 -10.863   0.246  12.954  42.231 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)
+(Intercept)  -1.5441     5.4778  -0.282    0.778
+eachvar      -0.0476     0.5523  -0.086    0.931
+
+Residual standard error: 17.45 on 198 degrees of freedom
+Multiple R-squared:  3.751e-05,	Adjusted R-squared:  -0.005013 
+F-statistic: 0.007426 on 1 and 198 DF,  p-value: 0.9314
+
