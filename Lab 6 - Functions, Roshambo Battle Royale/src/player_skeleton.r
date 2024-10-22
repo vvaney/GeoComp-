@@ -1,25 +1,33 @@
 player_skeleton <- function(my_plays=NULL, their_plays=NULL, outcomes=NULL) {
+  # Calculate the frequencies of their plays
   frequencies <- table(their_plays)
   
-  if (length(their_plays) < 102) {
-    # Play rock if fewer than 102 plays
+  # Set a default strategy for fewer than 100 plays
+  if (length(their_plays) < 100) {
     play <- "rock"
   } else {
-    if (all(tail(their_plays, 102) == "rock")) {
+    # Check for patterns or opponent's behavior
+    if (all(tail(their_plays, 100) == "rock")) {
       play <- "paper"
-    } else if (all(tail(their_plays, 102) == rep(c("rock", "paper", "scissors"), times = 34))) {
-      plays_cycle <- c("paper", "scissors", "rock")
-      play <- plays_cycle[(length(my_plays) %% 3) + 1]
-    } else if (all(tail(their_plays, 102) == "paper")) {
-      plays_cycle <- c("rock", "scissors", "paper")
-      play <- plays_cycle[(length(my_plays) %% 3) + 1]
     } else {
-      most_freq <- names(which.max(frequencies))
-      play <- ifelse(most_freq == "scissors", "rock",
-                     ifelse(most_freq == "rock", "paper", "scissors"))
+      # Evaluate the last play of the opponent
+      last_play <- their_plays[length(their_plays)]
+      my_last_play <- my_plays[length(my_plays)]
+      second_last_play <- their_plays[length(their_plays) - 1]
+      
+      if (last_play == "paper") {
+        play <- "scissors"
+      } else if (my_last_play == "scissors") {
+        play <- "paper"
+      } else if (my_last_play == "paper") {
+        play <- "scissors"
+      } else {
+        play <- "rock"
+      }
     }
   }
   
+  # If no play has been set, choose a random play based on the last play you made
   if (is.null(play)) {
     last_play <- tail(my_plays, 1)
     play <- ifelse(last_play == "rock", sample(c("paper", "scissors"), 1),
@@ -27,8 +35,7 @@ player_skeleton <- function(my_plays=NULL, their_plays=NULL, outcomes=NULL) {
                           sample(c("rock", "paper"), 1)))
   }
   
-  return(play)
-}
+  
 
 
 ##	Let's load two of the sample players. We can
@@ -82,7 +89,7 @@ roshambo(player_skeleton, player_copybot)
 ##		than 1.9 over 1000 rounds against each competitor:
 source("throwdown.r")
 
-#throwdown(player_skeleton)
+throwdown(player_skeleton)
 
 
 ##	I'm not going to provide you with any more examples.
